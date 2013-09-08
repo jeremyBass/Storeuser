@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+  <acl>
+    <resources>
+      <admin>
+        <children>
+          <storeuser translate="title">
+            <title>Advanced Permissions Tab</title>
+            <sort_order>10</sort_order>
+          </storeuser>
+        </children>
+      </admin>
+    </resources>
+    <resources>
+      <admin>
+        <children>
+          <system>
+            <children>
+              <storeuser translate="title" module="storeuser">
+                <title>Advanced Permissions</title>
+                <sort_order>0</sort_order>
+              </storeuser>
+              <config>
+                <children>
+                  <storeuser translate="title" module="storeuser">
+                    <title>Advanced Permissions</title>
+                  </storeuser>
+                </children>
+              </config>
+            </children>
+          </system>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>
