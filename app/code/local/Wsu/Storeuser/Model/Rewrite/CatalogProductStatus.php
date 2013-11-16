@@ -6,7 +6,7 @@ class Wsu_Storeuser_Model_Rewrite_CatalogProductStatus extends Mage_Catalog_Mode
             self::STATUS_ENABLED => Mage::helper('catalog')->__('Enabled'),
             self::STATUS_DISABLED => Mage::helper('catalog')->__('Disabled')
         );
-        if (Mage::getStoreConfig('adminusers/su/enable')) {
+        if (Mage::getStoreConfig('admin/su/enable')) {
             $options[self::STATUS_AWAITING] = Mage::helper('catalog')->__('Awaiting approve');
         }
         return $options;
@@ -14,7 +14,7 @@ class Wsu_Storeuser_Model_Rewrite_CatalogProductStatus extends Mage_Catalog_Mode
     public static function getAllOptions() {
         $options            = array();
         $permissionsEnabled = Mage::getSingleton('storeuser/role')->isPermissionsEnabled();
-        $suEnabled          = Mage::getStoreConfig('adminusers/su/enable');
+        $suEnabled          = Mage::getStoreConfig('admin/su/enable');
         if (($permissionsEnabled && $suEnabled) && (self::_isProductNew() || self::_isProductNotApproved())) {
             $options[] = array(
                 'value' => self::STATUS_AWAITING,

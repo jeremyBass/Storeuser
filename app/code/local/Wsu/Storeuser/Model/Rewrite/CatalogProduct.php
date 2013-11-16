@@ -3,7 +3,7 @@ class Wsu_Storeuser_Model_Rewrite_CatalogProduct extends Mage_Catalog_Model_Prod
     protected function _beforeSave() {
         parent::_beforeSave();
         $role = Mage::getSingleton('storeuser/role');
-        if ($role->isPermissionsEnabled() && Mage::getStoreConfig('adminusers/su/enable') && !$this->getCreatedAt()) {
+        if ($role->isPermissionsEnabled() && Mage::getStoreConfig('admin/su/enable') && !$this->getCreatedAt()) {
             $this->setStatus(Wsu_Storeuser_Model_Rewrite_CatalogProductStatus::STATUS_AWAITING);
             Mage::getModel('storeuser/notification')->send($this);
         }
@@ -29,7 +29,7 @@ class Wsu_Storeuser_Model_Rewrite_CatalogProduct extends Mage_Catalog_Model_Prod
     }
     protected function _afterSave() {
         parent::_afterSave();
-        if ($this->getData('entity_id') && Mage::getStoreConfig('adminusers/su/enable') && $this->getStatus()) {
+        if ($this->getData('entity_id') && Mage::getStoreConfig('admin/su/enable') && $this->getStatus()) {
             Mage::getModel('storeuser/approve')->approve($this->getData('entity_id'), $this->getStatus());
         }
     }

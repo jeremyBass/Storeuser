@@ -1,7 +1,7 @@
 <?php
 class Wsu_Storeuser_Model_Rewrite_CatalogProductAction extends Mage_Catalog_Model_Product_Action {
     public function updateAttributes($productIds, $attrData, $storeId) {
-        if (isset($attrData['status']) && $this->_isUpdatingStatus() && Mage::getSingleton('storeuser/role')->isPermissionsEnabled() && Mage::getStoreConfig('adminusers/su/enable')) {
+        if (isset($attrData['status']) && $this->_isUpdatingStatus() && Mage::getSingleton('storeuser/role')->isPermissionsEnabled() && Mage::getStoreConfig('admin/su/enable')) {
             if ($attrData['status'] == Wsu_Storeuser_Model_Rewrite_CatalogProductStatus::STATUS_AWAITING) {
                 Mage::throwException(Mage::helper('core')->__('This status cannot be used in mass action'));
                 return $this;

@@ -2,7 +2,7 @@
 class Wsu_Storeuser_Model_Notification extends Mage_Core_Model_Abstract {
     const XML_PATH_EMAIL_SENDER = 'contacts/email/sender_email_identity';
     public function send($product) {
-        $suEmail = Mage::getStoreConfig('adminusers/su/email');
+        $suEmail = Mage::getStoreConfig('admin/su/email');
         if ('' == $suEmail) {
             $suEmail = Mage::getStoreConfig('trans_email/ident_sales/email');
         }
@@ -16,7 +16,7 @@ class Wsu_Storeuser_Model_Notification extends Mage_Core_Model_Abstract {
             'store' => $storeId
         ));
         $mailTemplate->setTemplateSubject($name);
-        $emailId = Mage::getStoreConfig('adminusers/su/template', $storeId);
+        $emailId = Mage::getStoreConfig('admin/su/template', $storeId);
         $mailTemplate->sendTransactional($emailId, Mage::getStoreConfig(self::XML_PATH_EMAIL_SENDER, $storeId), $suEmail, $name, $vars);
         Mage::getSingleton('core/translate')->setTranslateInline(true);
         return $mailTemplate->getSentSuccess();
