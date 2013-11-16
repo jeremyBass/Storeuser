@@ -2,13 +2,13 @@
 class Wsu_Storeuser_Adminhtml_RoleController extends Mage_Adminhtml_Controller_Action {
     public function duplicateAction() {
         $roleModel             = Mage::getModel('admin/roles');
-        $aitRoleModel          = Mage::getModel('storeuser/advancedrole');
+        $wsuRoleModel          = Mage::getModel('storeuser/advancedrole');
         $loadRole              = $roleModel->load($this->getRequest()->getParam('rid'));
         $roleName              = $loadRole->getRoleName();
         $ruleModel             = Mage::getModel("admin/rules");
         $loadRuleCollection    = $ruleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
         //echo "<pre>"; print_r($loadRuleCollection->getSize()); exit;
-        $loadAitRoleCollection = $aitRoleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
+        $loadAitRoleCollection = $wsuRoleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
         try {
             $roleModel->setId(null)->setName('Copy of ' . $loadRole->getRoleName())->setPid($loadRole->getParentId())->setTreeLevel($loadRole->getTreeLevel())->setType($loadRole->getType())->setUserId($loadRole->getUserId())->save();
             //            foreach (explode(",",$roleModel->getUserId()) as $nRuid) {
@@ -19,7 +19,7 @@ class Wsu_Storeuser_Adminhtml_RoleController extends Mage_Adminhtml_Controller_A
             }
             $newRoleId = $roleModel->getRoleId();
             foreach ($loadAitRoleCollection as $loadAitRole) {
-                $aitRoleModel->setId(null)->setRoleId($newRoleId)->setWebsiteId($loadAitRole->getWebsiteId())->setStoreId($loadAitRole->getStoreId())->setStoreviewIds($loadAitRole->getStoreviewIds())->setCategoryIds($loadAitRole->getCategoryIds())->setCanEditGlobalAttr($loadAitRole->getCanEditGlobalAttr())->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())->save();
+                $wsuRoleModel->setId(null)->setRoleId($newRoleId)->setWebsiteId($loadAitRole->getWebsiteId())->setStoreId($loadAitRole->getStoreId())->setStoreviewIds($loadAitRole->getStoreviewIds())->setCategoryIds($loadAitRole->getCategoryIds())->setCanEditGlobalAttr($loadAitRole->getCanEditGlobalAttr())->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())->save();
             }
         }
         catch (Exception $e) {
