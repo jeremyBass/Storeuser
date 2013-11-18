@@ -9,6 +9,13 @@
       <show_in_website>1</show_in_website>
       <show_in_store>1</show_in_store>
       <groups>
+	    <hint>
+          <frontend_model>storepartitions/adminhtml_system_config_fieldset_hint</frontend_model>
+          <sort_order>0</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+        </hint>
         <basicsettings translate="label">
           <label>Basic Settings</label>
           <comment>
