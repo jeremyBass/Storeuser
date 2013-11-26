@@ -6,6 +6,9 @@
       <codePool>local</codePool>
       <self_name>Store User Permissions</self_name>
       <priority>1250</priority>
+	  <depends>
+		 <Mage_Widget />
+	 </depends>
     </Wsu_Storepartitions>
   </modules>
 </config>
