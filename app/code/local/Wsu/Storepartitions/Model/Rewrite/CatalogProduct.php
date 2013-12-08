@@ -44,6 +44,28 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogProduct extends Mage_Catalog_Mode
         }
         return $this;
     }
+	
+	//this is used for the to applie the right url
+	//to the product from the store it belones to 
+    public function getProductUrl($useSid = NULL){
+		$_proId =  $this->getId();
+		$product= Mage::getModel('catalog/product')->load($_proId); 
+		$stores = $product->getStoreIds();
+		$pstore_id = count($stores)>1?array_shift(array_values($product->getStoreIds())):$stores[0];
+		/*if(Mage::app()->getStore()->getStoreId() == $pstore_id){
+			$purl = $this->getUrlModel()->getProductUrl($this, $useSid);//$this->getProductUrl();
+		}else{
+			$base = Mage::app()->getStore($pstore_id)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK);
+			$purl = $base.$product->getUrlPath();
+		}*/
+		
+		$base = Mage::app()->getStore($pstore_id)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK);
+		$purl = $base.$product->getUrlPath();
+		
+		return $purl;
+    }
+	
+	
     /**
      * @refactor ?
      * check if following bug reproduces when commented
