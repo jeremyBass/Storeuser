@@ -8,10 +8,10 @@ class Wsu_Storepartitions_Model_Template_Filter extends Mage_Widget_Model_Templa
 	 */
 	public function storemediaDirective($construction) {
 		$params = $this->_getIncludeParameters($construction[2]);
-		$requestedUrl = $params['url'];
+		$requestedUrl = trim($params['url'],'/');
 
         $currentStoreCode = Mage::app()->getStore(Mage::getDesign()->getStore())->getCode();
-		$URL = '/store-media/'.$currentStoreCode.'/'. trim($requestedUrl,'/');
+		$URL = '/store-media/'.$currentStoreCode.'/'. $requestedUrl;
 		if(!file_exists(Mage::getBaseDir('media') .$URL)){
 			$URL = '/store-media/default/'. trim($requestedUrl,'/');
 		}

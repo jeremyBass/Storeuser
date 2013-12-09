@@ -80,14 +80,14 @@
     </acl>
   </adminhtml>
   <global>
-	<cms>
-		<page>
-			<tempate_filter>storepartitions/template_filter</tempate_filter>
-		</page>
-		<block>
-			<tempate_filter>storepartitions/template_filter</tempate_filter>
-		</block>
-	</cms>
+    <cms>
+      <page>
+        <tempate_filter>storepartitions/template_filter</tempate_filter>
+      </page>
+      <block>
+        <tempate_filter>storepartitions/template_filter</tempate_filter>
+      </block>
+    </cms>
     <resources>
       <storepartitions_setup>
         <setup>

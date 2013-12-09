@@ -66,4 +66,7 @@ CREATE TABLE IF NOT EXISTS {$this->getTable('wsu_storepartitions_approvedproduct
     
 ");
 
+
+
+
 $installer->endSetup(); 
