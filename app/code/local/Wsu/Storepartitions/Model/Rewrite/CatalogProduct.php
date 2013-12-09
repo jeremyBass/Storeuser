@@ -51,7 +51,7 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogProduct extends Mage_Catalog_Mode
 		$_proId =  $this->getId();
 		$product= Mage::getModel('catalog/product')->load($_proId); 
 		$stores = $product->getStoreIds();
-		$pstore_id = count($stores)>1?array_shift(array_values($product->getStoreIds())):$stores[0];
+		$pstore_id = $stores[0];
 		/*if(Mage::app()->getStore()->getStoreId() == $pstore_id){
 			$purl = $this->getUrlModel()->getProductUrl($this, $useSid);//$this->getProductUrl();
 		}else{
