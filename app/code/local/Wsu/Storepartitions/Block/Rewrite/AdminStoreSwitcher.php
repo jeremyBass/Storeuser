@@ -12,30 +12,31 @@ class Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher extends Mage_Adminhtm
     }
     public function getStores($group) {
         $stores = parent::getStores($group);
-        $role   = Mage::getSingleton('storepartitions/role');
-        if ($role->isPermissionsEnabled()) {
-            foreach ($stores as $storeId => $store) {
-                if (!in_array($storeId, $role->getAllowedStoreviewIds())) {
-                    unset($stores[$storeId]);
-                }
-            }
-        }
+        //$role   = Mage::getSingleton('storepartitions/role');
+        //if ($role->isPermissionsEnabled()) {
+        //    foreach ($stores as $storeId => $store) {
+        //        if (!in_array($storeId, $role->getAllowedStoreviewIds())) {
+        //            unset($stores[$storeId]);
+        //        }
+        //    }
+        //}
         return $stores;
     }
     public function getStoreCollection($group) {
         $stores = parent::getStoreCollection($group);
-        $role   = Mage::getSingleton('storepartitions/role');
-        if ($role->isPermissionsEnabled()) {
-            $stores->addIdFilter($role->getAllowedStoreviewIds());
-        }
+        //$role   = Mage::getSingleton('storepartitions/role');
+        //if ($role->isPermissionsEnabled()) {
+        //    $stores->addIdFilter($role->getAllowedStoreviewIds());
+        //}
         return $stores;
     }
     public function getWebsiteCollection() {
         $websiteCollection = parent::getWebsiteCollection();
-        $role              = Mage::getSingleton('storepartitions/role');
-        if ($role->isPermissionsEnabled()) {
-            $websiteCollection->addIdFilter($role->getAllowedWebsiteIds());
-        }
+		
+        //$role              = Mage::getSingleton('storepartitions/role');
+        //if ($role->isPermissionsEnabled()) {
+        //    $websiteCollection->addIdFilter($role->getAllowedWebsiteIds());
+        //}
         return $websiteCollection;
     }
     protected function _toHtmlReports() {
