@@ -88,6 +88,11 @@
         <tempate_filter>storepartitions/template_filter</tempate_filter>
       </block>
     </cms>
+	<adminhtml>
+		<rewrite>
+			<system_store_grid>Wsu_Storepartitions_Block_System_Store_Grid</system_store_grid>
+		</rewrite>
+	</adminhtml>
     <resources>
       <storepartitions_setup>
         <setup>
