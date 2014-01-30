@@ -9,7 +9,7 @@ class Wsu_Storepartitions_Block_System_Store_Grid extends Mage_Adminhtml_Block_S
 	public function __construct() {
 		parent::__construct();
 		if (!$this->getRequest()->getParam('classic')) {
-			$this->setTemplate('storepartitions/managestores.phtml');
+			$this->setTemplate('wsu/storepartitions/store/managestores.phtml');
 		}
 	}
 
