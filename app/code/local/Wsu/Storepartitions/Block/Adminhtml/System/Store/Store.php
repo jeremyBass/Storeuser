@@ -60,7 +60,8 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
      */
     public function getGridHtml()
     {
-        return $this->getLayout()->createBlock('adminhtml/system_store_tree')->toHtml();
+
+		return $this->getLayout()->createBlock('adminhtml/system_store_tree')->toHtml();
     }
 
     /**
