@@ -7,7 +7,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd extends Mage_Adm
      */
     public function __construct() {
 		$this->_objectId = 'website_id';
-		$saveLabel   = Mage::helper('core')->__('Save Website');
+		$saveLabel   = Mage::helper('core')->__('Save');
 
 		$this->_blockGroup = 'adminhtml';
 		$this->_controller = 'system_store';
@@ -25,10 +25,6 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd extends Mage_Adm
      * @return string
      */
     public function getHeaderText(){
-		
-		$editLabel = Mage::helper('core')->__('Edit Website');
-		$addLabel  = Mage::helper('core')->__('New Website');
-
-        return Mage::registry('store_action') == 'add' ? $addLabel : $editLabel;
+        return Mage::helper('core')->__('Add a Website, Site, and Store all in one');
     }
 }
