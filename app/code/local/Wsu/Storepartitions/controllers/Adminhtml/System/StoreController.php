@@ -34,7 +34,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		$cDat = new Mage_Core_Model_Config();
         $SU_Helper = Mage::helper('storeutilities/utilities');
 		
-		$newRootCat = $SU_Helper->make_category("Student store root");
+		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
 			$SU_Helper->reparentCategory($newRootCat,10);
 			$siteId = $SU_Helper->make_website(array('code'=>'studentstore','name'=>'Student store'));
