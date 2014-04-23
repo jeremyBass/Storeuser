@@ -32,6 +32,13 @@
           <frontName>storepartitions</frontName>
         </args>
       </storepartitions>
+        <adminhtml>
+            <args>
+                <modules>
+                    <System_Store before="Mage_Adminhtml">Wsu_Storepartitions_Adminhtml</System_Store>
+                </modules>
+            </args>
+        </adminhtml>
     </routers>
   </admin>
   <adminhtml>
@@ -226,6 +233,11 @@
         </rewrite>
       </widget>
     </blocks>
+	
+
+	
+	
+	
     <helpers>
       <storepartitions>
         <class>Wsu_Storepartitions_Helper</class>
