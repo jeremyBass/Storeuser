@@ -18,8 +18,10 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
     }
 
     public function quickAddAction() {
-        Mage::register('store_type', 'website');
-        $this->_forward('newStore');
+		$this->_initAction()
+			->_addContent($this->getLayout()->createBlock('adminhtml/system_store_quickadd'))
+			->renderLayout();
+        //$this->_forward('newStore');
     }
 	
     public function quickAddSaveAction() {
