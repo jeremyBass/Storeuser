@@ -17,11 +17,13 @@
 		<?php $i = 0;?>
 		<?php $printedWebsite = $printedStoreGroup = false; ?>
 		<?php foreach ($this->getTableData() as $webSiteId => $webSiteData): ?>
+			<?php if ($i>0): ?>
 			<tr>
-            	<td colspan="3">
-					<div style="height:15px; background-color:#626262; width:100%;"></div>
+            	<td colspan="3" style="padding: 0;">
+					<div style="height:7px; background-color:#626262; width:100%;"></div>
                 </td>
             <tr>
+			<?php endif; ?>
 			<?php if (count($webSiteData['_storeGroups']) == 0): ?>
 
 				<tr>
@@ -73,7 +75,7 @@
 
 				<?php endif; ?>
 
-			<?php $printedWebsite = false; ?>
+			<?php $printedWebsite = false; $i++; ?>
 		<?php endforeach; ?>
 		</tbody>
 	</table>
