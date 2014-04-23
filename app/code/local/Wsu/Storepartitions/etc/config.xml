@@ -167,7 +167,7 @@
       </storepartitions>
       <adminhtml>
         <rewrite>
-		
+			<system_store_quickadd>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd</system_store_quickadd>
 			<system_store_tree>Wsu_Storepartitions_Block_Adminhtml_System_Store_Tree</system_store_tree>
 			<system_store_store>Wsu_Storepartitions_Block_Adminhtml_System_Store_Store</system_store_store>
 			
