@@ -18,6 +18,11 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
     }
 
     public function quickAddAction() {
+
+		$model      = Mage::getModel('core/website');
+		Mage::register('store_data', $model);
+		
+		
 		$this->_initAction()
 			->_addContent($this->getLayout()->createBlock('adminhtml/system_store_quickadd'))
 			->renderLayout();
@@ -32,6 +37,9 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
             }
             $session = $this->_getSession();
 		}
+
+		
+		
 		
 		$cDat = new Mage_Core_Model_Config();
         $SU_Helper = Mage::helper('storeutilities/utilities');
