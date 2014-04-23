@@ -88,11 +88,11 @@
         <tempate_filter>storepartitions/template_filter</tempate_filter>
       </block>
     </cms>
-	<adminhtml>
+	<!--<adminhtml>
 		<rewrite>
-			<system_store_grid>Wsu_Storepartitions_Block_System_Store_Grid</system_store_grid>
+			<system_store_grid>Wsu_Storepartitions_Block_Adminhtml_System_Store_Grid</system_store_grid>
 		</rewrite>
-	</adminhtml>
+	</adminhtml>-->
     <resources>
       <storepartitions_setup>
         <setup>
@@ -160,6 +160,10 @@
       </storepartitions>
       <adminhtml>
         <rewrite>
+		
+		
+			<system_store_store>Wsu_Storepartitions_Block_Adminhtml_System_Store_Store</system_store_store>
+			<system_store_grid>Wsu_Storepartitions_Block_Adminhtml_System_Store_Grid</system_store_grid>
           <permissions_editroles>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsEditroles</permissions_editroles>
           <permissions_buttons>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsButtons</permissions_buttons>
           <catalog_product_edit_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabWebsites</catalog_product_edit_tab_websites>
