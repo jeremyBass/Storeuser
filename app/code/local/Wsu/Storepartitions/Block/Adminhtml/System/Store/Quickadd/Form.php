@@ -1,4 +1,5 @@
 <?php
+
 class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mage_Adminhtml_Block_Widget_Form {
 
     /**
@@ -16,7 +17,8 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
      * return Mage_Adminhtml_Block_Widget_Form
      */
     protected function _prepareForm() {
-			$Model = Mage::registry('store_data');
+			//$Model = Mage::registry('store_data');
+			//$Model->setData($postData['website']);
 			/* @var $websiteModel Mage_Core_Model_Website */
 			/* @var $groupModel Mage_Core_Model_Store_Group */
 			/* @var $storeModel Mage_Core_Model_Store */
@@ -28,9 +30,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
 			));
 
 
-            if ($postData = Mage::registry('store_post_data')) {
-                $websiteModel->setData($postData['website']);
-            }
+
             $fieldset = $form->addFieldset('website_fieldset', array(
                 'legend' => Mage::helper('core')->__('Website Information')
             ));
@@ -58,28 +58,17 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
             ));
 
 
-            if (!$websiteModel->getIsDefault() && $websiteModel->getStoresCount()) {
-                $fieldset->addField('is_default', 'checkbox', array(
-                    'name'      => 'website[is_default]',
-                    'label'     => Mage::helper('core')->__('Set as Default'),
-                    'value'     => 1,
-                ));
-            }
-            else {
-                $fieldset->addField('is_default', 'hidden', array(
+             $fieldset->addField('is_default', 'hidden', array(
                     'name'      => 'website[is_default]',
                     'value'     => ""
                 ));
-            }
 
             $fieldset->addField('website_website_id', 'hidden', array(
                 'name'  => 'website[website_id]',
                 'value' => ""
             ));
 
-            if ($postData = Mage::registry('store_post_data')) {
-                $groupModel->setData($postData['group']);
-            }
+
             $fieldset = $form->addFieldset('group_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store Information')
             ));
@@ -109,9 +98,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
                 'value'     => ""
             ));
 
-            if ($postData = Mage::registry('store_post_data')) {
-                $storeModel->setData($postData['store']);
-            }
+
             $fieldset = $form->addFieldset('store_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store View Information')
             ));
@@ -134,7 +121,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
             $fieldset->addField('store_is_active', 'select', array(
                 'name'      => 'store[is_active]',
                 'label'     => Mage::helper('core')->__('Status'),
-                'value'     => $storeModel->getIsActive(),
+                'value'     => "",
                 'options'   => array(
                     0 => Mage::helper('adminhtml')->__('Disabled'),
                     1 => Mage::helper('adminhtml')->__('Enabled')),
