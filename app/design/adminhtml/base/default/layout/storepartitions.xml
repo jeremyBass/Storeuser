@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout>
+	<default translate="label" module="page">
+        <reference name="head">
+			<action method="addItem"><type>skin_js</type><script>wsu/storepartitions/js/admin_helper.js</script></action>
+        </reference>
+    </default>
   <adminhtml_catalog_category_edit>
     <reference name="left">
       <block name="category.tree.storepartitionsprem" type="adminhtml/catalog_category_tree" template="Storepartitions/catalog_category_tree.phtml" after="-" />
