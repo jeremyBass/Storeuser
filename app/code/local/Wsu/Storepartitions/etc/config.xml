@@ -167,6 +167,7 @@
       </storepartitions>
       <adminhtml>
         <rewrite>
+		<!-- Sets up the quick add store and such -->
 			<system_store_quickadd>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd</system_store_quickadd>
 			<system_store_quickadd_form>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form</system_store_quickadd_form>
 			<system_store_tree>Wsu_Storepartitions_Block_Adminhtml_System_Store_Tree</system_store_tree>
