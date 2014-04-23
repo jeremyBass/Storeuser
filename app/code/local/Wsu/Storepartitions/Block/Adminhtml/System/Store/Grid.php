@@ -1,5 +1,5 @@
 <?php
-class Wsu_Storepartitions_Block_System_Store_Grid extends Mage_Adminhtml_Block_System_Store_Grid {
+class Wsu_Storepartitions_Block_Adminhtml_System_Store_Grid extends Mage_Adminhtml_Block_System_Store_Grid {
 
 	protected $renderLinks = true;
 
