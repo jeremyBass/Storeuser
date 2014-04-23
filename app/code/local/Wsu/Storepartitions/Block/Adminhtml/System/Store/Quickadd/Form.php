@@ -16,16 +16,16 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
      * return Mage_Adminhtml_Block_Widget_Form
      */
     protected function _prepareForm() {
-        $Model = Mage::registry('store_data');
-        /* @var $websiteModel Mage_Core_Model_Website */
-        /* @var $groupModel Mage_Core_Model_Store_Group */
-        /* @var $storeModel Mage_Core_Model_Store */
-
-        $form = new Varien_Data_Form(array(
-            'id'        => 'edit_form',
-            'action'    => $this->getData('action'),
-            'method'    => 'post'
-        ));
+			$Model = Mage::registry('store_data');
+			/* @var $websiteModel Mage_Core_Model_Website */
+			/* @var $groupModel Mage_Core_Model_Store_Group */
+			/* @var $storeModel Mage_Core_Model_Store */
+	
+			$form = new Varien_Data_Form(array(
+				'id'        => 'edit_form',
+				'action'    => $this->getData('action'),
+				'method'    => 'post'
+			));
 
 
             if ($postData = Mage::registry('store_post_data')) {
