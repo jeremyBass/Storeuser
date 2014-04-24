@@ -55,6 +55,25 @@ class Wsu_Storepartitions_Model_Rewrite_AdminSystemStore extends Mage_Adminhtml_
         return $options;
     }
 
+    /**
+     * Get store views as id => name associative array
+     *
+     * @param bool $withDefault
+     * @param string $attribute
+     * @return array
+     */
+    public function getStoreOptionHash($withDefault = false, $attribute = 'name') {
+        $options = array();
+		$role = Mage::getSingleton('storepartitions/role');
+		$allowedStoreViewIds = $role->getAllowedStoreViewIds();
+        foreach (Mage::app()->getStores((bool)$withDefault && $this->_isAdminScopeAllowed) as $store) {
+			if(in_array($store->getId(),$allowedStoreViewIds)){
+            	$options[$store->getId()] = $store->getDataUsingMethod($attribute);
+			}
+        }
+        return $options;
+    }
+
 
 	
 }
