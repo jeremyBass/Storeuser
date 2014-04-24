@@ -16,7 +16,9 @@ class Wsu_Storepartitions_Block_Adminhtml_Options extends Mage_Core_Block_Templa
     public function canEditStoreViews() {
         return Mage::getModel('storepartitions/advancedrole')->canEditStoreViews($this->_getRoleId());
     }	
-	
+    public function canAddStoreGroups() {
+        return Mage::getModel('storepartitions/advancedrole')->canAddStoreGroups($this->_getRoleId());
+    }		
 	
 	
 	
