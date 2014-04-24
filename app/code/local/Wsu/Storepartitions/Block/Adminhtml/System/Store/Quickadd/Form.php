@@ -29,6 +29,19 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form extends Mag
 				'method'    => 'post'
 			));
 
+/*
+root_cat
+website['code']
+website['name']
+storegroup['name']
+storegroup['baseurl']
+store['code']
+store['name']
+store['home_layout']
+store['title']
+store['content_heading']
+*/
+
 
 
             $fieldset = $form->addFieldset('website_fieldset', array(
