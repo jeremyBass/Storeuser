@@ -64,7 +64,13 @@ class Wsu_Storepartitions_Model_Advancedrole extends Mage_Core_Model_Abstract {
         }
         return true;
     }
-	
+    public function canEditWebSites($roleId) {
+        $recordCollection = $this->getCollection()->loadByRoleId($roleId);
+        if ($recordCollection->getSize()) {
+            return (bool) $recordCollection->getFirstItem()->getCanEditWebSites();
+        }
+        return true;
+    }
     public function deleteRole($roleId) {
         $recordCollection = $this->getCollection()->loadByRoleId($roleId);
         if ($recordCollection->getSize()) {
