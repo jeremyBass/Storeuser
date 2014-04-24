@@ -87,7 +87,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 						$cDat->saveConfig('wsu_themecontrol_design/spine/max_width', '1188', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/fluid_width', 'hybrid', 'websites', $siteId);
 						*/
-						Mage::getSingleton('adminhtml/session')->addSuccess( Mage::helper('storeutilities')->__('Site created') );
+						
 					}
 				}
 			}
