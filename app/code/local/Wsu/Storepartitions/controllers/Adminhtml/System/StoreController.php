@@ -53,7 +53,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 							'name'=>$postData['website']['name']
 						));
 			if( $siteId>0 ){
-				Mage::getSingleton('adminhtml/session')->addSuccess( $postData['website']['name']."(${siteId}) ".Mage::helper('storeutilities')->__('Web Site was created') );
+				Mage::getSingleton('adminhtml/session')->addSuccess( $postData['website']['name']."(id: ${siteId}) ".Mage::helper('storeutilities')->__('Web Site was created') );
 				
 				$storeGroupId = $SU_Helper->make_storeGroup( array(
 						'name'=>$postData['storegroup']['name']
