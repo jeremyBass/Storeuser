@@ -48,14 +48,12 @@ store['content_heading']
                 'legend' => Mage::helper('core')->__('Website Information')
             ));
             /* @var $fieldset Varien_Data_Form */
-
             $fieldset->addField('website_name', 'text', array(
                 'name'      => 'website[name]',
                 'label'     => Mage::helper('core')->__('Name'),
                 'value'     => "",
                 'required'  => true,
             ));
-
             $fieldset->addField('website_code', 'text', array(
                 'name'      => 'website[code]',
                 'label'     => Mage::helper('core')->__('Code'),
@@ -67,22 +65,19 @@ store['content_heading']
             $fieldset = $form->addFieldset('group_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store Information')
             ));
-
- 
             $fieldset->addField('group_name', 'text', array(
                 'name'      => 'group[name]',
                 'label'     => Mage::helper('core')->__('Name'),
                 'value'     => "",
                 'required'  => true,
             ));
-
             $fieldset->addField('root_cat', 'text', array(
                 'name'      => 'root_cat',
                 'label'     => Mage::helper('core')->__('Root Category Name'),
                 'value'     => "",
                 'required'  => true,
             ));
-            $fieldset->addField('root_cat', 'text', array(
+            $fieldset->addField('baseurl', 'text', array(
                 'name'      => 'storegroup[baseurl]',
                 'label'     => Mage::helper('core')->__('Base Url'),
                 'value'     => "",
@@ -93,9 +88,6 @@ store['content_heading']
             $fieldset = $form->addFieldset('store_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store View Information')
             ));
-
- 
-
             $fieldset->addField('store_name', 'text', array(
                 'name'      => 'store[name]',
                 'label'     => Mage::helper('core')->__('Name'),
@@ -107,35 +99,6 @@ store['content_heading']
                 'label'     => Mage::helper('core')->__('Code'),
                 'value'     => "",
                 'required'  => true,
-            ));
-
-            $fieldset->addField('store_is_active', 'select', array(
-                'name'      => 'store[is_active]',
-                'label'     => Mage::helper('core')->__('Status'),
-                'value'     => "",
-                'options'   => array(
-                    0 => Mage::helper('adminhtml')->__('Disabled'),
-                    1 => Mage::helper('adminhtml')->__('Enabled')),
-                'required'  => true,
-            ));
-
-            $fieldset->addField('store_sort_order', 'text', array(
-                'name'      => 'store[sort_order]',
-                'label'     => Mage::helper('core')->__('Sort Order'),
-                'value'     => "",
-                'required'  => false,
-            ));
-
-            $fieldset->addField('store_is_default', 'hidden', array(
-                'name'      => 'store[is_default]',
-                'no_span'   => true,
-                'value'     => "",
-            ));
-
-            $fieldset->addField('store_store_id', 'hidden', array(
-                'name'      => 'store[store_id]',
-                'no_span'   => true,
-                'value'     => "",
             ));
 
 
