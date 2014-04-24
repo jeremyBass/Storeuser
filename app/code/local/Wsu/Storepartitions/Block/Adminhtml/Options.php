@@ -15,17 +15,19 @@ class Wsu_Storepartitions_Block_Adminhtml_Options extends Mage_Core_Block_Templa
     }
     public function canEditStoreViews() {
         return Mage::getModel('storepartitions/advancedrole')->canEditStoreViews($this->_getRoleId());
-    }	
+    }
     public function canAddStoreGroups() {
         return Mage::getModel('storepartitions/advancedrole')->canAddStoreGroups($this->_getRoleId());
-    }		
+    }
     public function canEditStoreGroups() {
         return Mage::getModel('storepartitions/advancedrole')->canEditStoreGroups($this->_getRoleId());
-    }		
+    }
     public function canAddWebSites() {
         return Mage::getModel('storepartitions/advancedrole')->canAddWebSites($this->_getRoleId());
-    }		
-	
+    }
+    public function canEditWebSites() {
+        return Mage::getModel('storepartitions/advancedrole')->canEditWebSites($this->_getRoleId());
+    }	
     private function _getRoleId() {
         return Mage::app()->getRequest()->getParam('rid');
     }
