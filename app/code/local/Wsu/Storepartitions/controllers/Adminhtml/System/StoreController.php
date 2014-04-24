@@ -46,6 +46,8 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		
 		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
+			Mage::getSingleton('adminhtml/session')->addSuccess( Mage::helper('storeutilities')->__('Created the new root category of')." ". $postData['root_cat'] );
+			
 			$siteId = $SU_Helper->make_website(array(
 							'code'=>$postData['website']['code'],
 							'name'=>$postData['website']['name']
