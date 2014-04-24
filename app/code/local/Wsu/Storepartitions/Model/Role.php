@@ -190,6 +190,14 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canEditOwnProductsOnly;
     }
+    public function canAddStoreViews() {
+        if (null == $this->_canAddStoreViews) {
+            $this->_canAddStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getCanAddStoreViews();
+        }
+        return $this->_canAddStoreViews;
+    }	
+	
+	
     // product permissions
     public function isOwnProduct($product) {
         $productOwnerId = $product->getCreatedBy();
