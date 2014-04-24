@@ -66,7 +66,14 @@ CREATE TABLE IF NOT EXISTS {$this->getTable('wsu_storepartitions_approvedproduct
     
 ");
 
-
+$installer->run($sql = '
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_add_store_views` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_edit_store_views` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_add_store_groups` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_edit_store_groups` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_add_web_sites` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_edit_web_sites` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
+');
 
 
 $installer->endSetup(); 
