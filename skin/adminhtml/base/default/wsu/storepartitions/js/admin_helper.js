@@ -1,7 +1,7 @@
 // JavaScript Document
 jQuery(function(){
 	(function($,window){
-		var formBtn = $('button.scalable.quickadd');
+		/*var formBtn = $('button.scalable.quickadd');
 		
 		var onclick = formBtn.attr("onclick");
 		var url = onclick.split("'")[1];
@@ -26,6 +26,6 @@ jQuery(function(){
 			});
 			
 
-		});
+		});*/
 	})(jQuery,window);
 });
