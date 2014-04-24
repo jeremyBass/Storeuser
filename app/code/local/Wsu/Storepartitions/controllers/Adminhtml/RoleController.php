@@ -29,6 +29,8 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
 							->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())
 							->setCanAddStoreViews($loadAitRole->getCanAddStoreViews())
 							->setCanEditStoreViews($loadAitRole->getCanEditStoreViews())
+							->setCanAddStoreGroups($loadAitRole->getCanAddStoreGroups())
+							->setCanEditStoreGroups($loadAitRole->getCanEditStoreGroups())
 							->save();
             }
         }
