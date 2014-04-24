@@ -19,7 +19,15 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
             }
             $newRoleId = $roleModel->getRoleId();
             foreach ($loadAitRoleCollection as $loadAitRole) {
-                $wsuRoleModel->setId(null)->setRoleId($newRoleId)->setWebsiteId($loadAitRole->getWebsiteId())->setStoreId($loadAitRole->getStoreId())->setStoreviewIds($loadAitRole->getStoreviewIds())->setCategoryIds($loadAitRole->getCategoryIds())->setCanEditGlobalAttr($loadAitRole->getCanEditGlobalAttr())->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())->save();
+                $wsuRoleModel->setId(null)
+							->setRoleId($newRoleId)
+							->setWebsiteId($loadAitRole->getWebsiteId())
+							->setStoreId($loadAitRole->getStoreId())
+							->setStoreviewIds($loadAitRole->getStoreviewIds())
+							->setCategoryIds($loadAitRole->getCategoryIds())
+							->setCanEditGlobalAttr($loadAitRole->getCanEditGlobalAttr())
+							->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())
+							->save();
             }
         }
         catch (Exception $e) {
