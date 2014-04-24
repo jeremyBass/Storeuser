@@ -214,7 +214,12 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canEditStoreGroups;
     }	
-	
+    public function canAddWebSites() {
+        if (null == $this->_canAddWebSites) {
+            $this->_canAddWebSites = (bool) $this->_getRecordCollection()->getFirstItem()->getAddWebSites();
+        }
+        return $this->_canAddWebSites;
+    }
 	
 		
     // product permissions
