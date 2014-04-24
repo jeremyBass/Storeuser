@@ -59,7 +59,7 @@ class Wsu_Storepartitions_Model_Observer {
         $request                = Mage::app()->getRequest();
         $canUpdateGlobalAttr    = (int) $request->getPost('allowupdateglobalattrs');
         $canEditOwnProductsOnly = (int) $request->getPost('caneditownproductsonly');
-		$canAddStoreViews		= (int) $request->getPost('canAddStoreViews');
+		$canAddStoreViews		= (int) $request->getPost('canaddstoreviews');
 		$canEditStoreViews		= (int) $request->getPost('caneditstoreviews');
         $selectedStoreIds       = $request->getPost('store_switcher');
         $storeCategoryIds       = $request->getPost('store_category_ids');
