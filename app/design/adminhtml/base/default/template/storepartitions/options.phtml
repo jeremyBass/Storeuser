@@ -1,27 +1,20 @@
 <br />
-
+<h3>Allow users to:</h3>
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
         <?php echo $this->canEditGlobalAttributes() ? 'checked="checked"' : '' ?>
            name="allowupdateglobalattrs"
            id="allowupdateglobalattrs"
            value="1" />&nbsp;
-    <label for="allowupdateglobalattrs">
-        <b><?php echo $this->__('Allow update global attributes') ?></b>
-    </label>
+    <label for="allowupdateglobalattrs"><?php echo $this->__('Update global attributes') ?></label>
 </div>
-
-<br />
-
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
         <?php echo $this->canEditOwnProductsOnly() ? 'checked="checked"' : '' ?>
            name="caneditownproductsonly"
            id="caneditownproductsonly"
            value="1" />&nbsp;
-    <label for="caneditownproductsonly">
-        <b><?php echo $this->__('Allow management of only products owned by user') ?></b>
-    </label>
+    <label for="caneditownproductsonly"><?php echo $this->__('Allow management of only products owned by user') ?></label>
 </div>
 
 <div style="background-color: whiteSmoke;">
@@ -30,9 +23,7 @@
            name="canaddstoreviews"
            id="canaddstoreviews"
            value="1" />&nbsp;
-    <label for="canaddstoreviews">
-        <b><?php echo $this->__('Allow management of store views under assigned websites') ?></b>
-    </label>
+    <label for="canaddstoreviews"><?php echo $this->__('Allow management of store views under assigned websites') ?></label>
 </div>
 
 <div style="background-color: whiteSmoke;">
@@ -41,9 +32,7 @@
            name="caneditstoreviews"
            id="caneditstoreviews"
            value="1" />&nbsp;
-    <label for="caneditstoreviews">
-        <b><?php echo $this->__('Allow management of store views under assigned websites. Limits are the user can not delete or add') ?></b>
-    </label>
+    <label for="caneditstoreviews"><?php echo $this->__('Allow editing of store views under assigned websites.') ?><b> <?php echo $this->__('Note: Limits are the user can not delete or add') ?></b></label>
 </div>
 
 <div style="background-color: whiteSmoke;">
@@ -52,9 +41,7 @@
            name="canaddstoregroups"
            id="canaddstoregroups"
            value="1" />&nbsp;
-    <label for="canaddstoregroups">
-        <b><?php echo $this->__('Allow management of store groups under assigned websites.') ?></b>
-    </label>
+    <label for="canaddstoregroups"><?php echo $this->__('Allow management of store groups under assigned websites.') ?></label>
 </div>
 
 <div style="background-color: whiteSmoke;">
@@ -63,9 +50,7 @@
            name="caneditstoregroups"
            id="caneditstoregroups"
            value="1" />&nbsp;
-    <label for="caneditstoregroups">
-        <b><?php echo $this->__('Allow management of store groups under assigned websites. Limits are the user can not delete or add') ?></b>
-    </label>
+    <label for="caneditstoregroups"><?php echo $this->__('Allow editing of store groups under assigned websites.') ?> <b> <?php echo $this->__(' Note: Limits are the user can not delete or add') ?></b></label>
 </div>
 
 
@@ -75,9 +60,7 @@
            name="canaddwebsites"
            id="canaddwebsites"
            value="1" />&nbsp;
-    <label for="canaddwebsites">
-        <b><?php echo $this->__('Allow management of any Website.') ?></b>
-    </label>
+    <label for="canaddwebsites"><?php echo $this->__('Allow management of any Website.') ?></label>
 </div>
 
 
@@ -87,8 +70,6 @@
            name="caneditwebsites"
            id="caneditwebsites"
            value="1" />&nbsp;
-    <label for="caneditwebsites">
-        <b><?php echo $this->__('Allow management of assigned Website.  Limits are the user can not delete or add') ?></b>
-    </label>
+    <label for="caneditwebsites"><?php echo $this->__('Allow editing of assigned Website.') ?> <b> <?php echo $this->__(' Note: Limits are the user can not delete or add') ?></b></label>
 </div>
 
