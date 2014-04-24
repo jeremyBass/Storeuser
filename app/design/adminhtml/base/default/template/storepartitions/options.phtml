@@ -69,6 +69,16 @@
 </div>
 
 
+<div style="background-color: whiteSmoke;">
+    <input type="checkbox"
+        <?php echo $this->canAddWebSites() ? 'checked="checked"' : '' ?>
+           name="canaddwebsites"
+           id="canaddwebsites"
+           value="1" />&nbsp;
+    <label for="canaddwebsites">
+        <b><?php echo $this->__('Allow manage own products only') ?></b>
+    </label>
+</div>
 
 
 
