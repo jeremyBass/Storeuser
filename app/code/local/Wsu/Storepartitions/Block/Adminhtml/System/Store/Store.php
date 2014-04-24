@@ -50,6 +50,11 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
             'class'     => 'quickadd',
         ));
 
+		if ( !$role->canAddStoreGroups() ) {
+			 $this->_removeButton('add_group');
+		}
+
+
         return parent::_prepareLayout();
     }
 
