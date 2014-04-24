@@ -63,6 +63,11 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
 			$limited = true;
 		}
 
+		if($limited){
+			$this->_removeButton('quickadd');
+		}
+
+
         return parent::_prepareLayout();
     }
 
