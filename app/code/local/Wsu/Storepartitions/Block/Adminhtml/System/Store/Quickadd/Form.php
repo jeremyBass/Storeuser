@@ -66,7 +66,7 @@ store['content_heading']
                 'legend' => Mage::helper('core')->__('Store Information')
             ));
             $fieldset->addField('group_name', 'text', array(
-                'name'      => 'group[name]',
+                'name'      => 'storegroup[name]',
                 'label'     => Mage::helper('core')->__('Name'),
                 'value'     => "",
                 'required'  => true,
