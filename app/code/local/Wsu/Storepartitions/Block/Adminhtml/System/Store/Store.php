@@ -53,7 +53,9 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
 		if ( !$role->canAddStoreGroups() ) {
 			 $this->_removeButton('add_group');
 		}
-
+		if ( !$role->canAddStoreViews() ) {
+			 $this->_removeButton('add_store');
+		}
 
         return parent::_prepareLayout();
     }
