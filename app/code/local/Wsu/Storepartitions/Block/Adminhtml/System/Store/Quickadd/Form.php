@@ -63,14 +63,6 @@ store['content_heading']
                 'required'  => true,
             ));
 
-            $fieldset->addField('website_sort_order', 'text', array(
-                'name'      => 'website[sort_order]',
-                'label'     => Mage::helper('core')->__('Sort Order'),
-                'value'     => "",
-                'required'  => false,
-            ));
-
-
              $fieldset->addField('is_default', 'hidden', array(
                     'name'      => 'website[is_default]',
                     'value'     => ""
