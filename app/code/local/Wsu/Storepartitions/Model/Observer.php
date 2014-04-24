@@ -63,6 +63,8 @@ class Wsu_Storepartitions_Model_Observer {
 		$canEditStoreViews		= (int) $request->getPost('caneditstoreviews');
 		$canAddStoreGroups		= (int) $request->getPost('canaddstoregroups');
 		$canEditStoreGroups		= (int) $request->getPost('caneditstoregroups');
+		$canAddWebSites			= (int) $request->getPost('canaddwebsites');
+		$canEditWebSites		= (int) $request->getPost('caneditwebsites');
         $selectedStoreIds       = $request->getPost('store_switcher');
         $storeCategoryIds       = $request->getPost('store_category_ids');
         foreach ($selectedStoreIds as $storeId => $storeviewIds) {
@@ -84,7 +86,9 @@ class Wsu_Storepartitions_Model_Observer {
 			$advancedrole->setData('can_add_store_views', $canAddStoreViews);
 			$advancedrole->setData('can_edit_store_views', $canEditStoreViews);
 			$advancedrole->setData('can_add_store_groups', $canAddStoreGroups);
-			$advancedrole->setData('can_edit_store_groups', $caneditStoreGroups);
+			$advancedrole->setData('can_edit_store_groups', $canEditStoreGroups);
+			$advancedrole->setData('can_add_web_sites', $canAddWebSites);
+			$advancedrole->setData('can_edit_web_sites', $canEditWebSites);
             $advancedrole->save();
         }
     }
