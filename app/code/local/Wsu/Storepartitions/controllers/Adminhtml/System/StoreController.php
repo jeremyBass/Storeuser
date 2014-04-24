@@ -91,7 +91,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 					}else{Mage::getSingleton('adminhtml/session')->addError("failed to create the store view");}
 				}else{Mage::getSingleton('adminhtml/session')->addError("failed to create the store group");}
 			}else{Mage::getSingleton('adminhtml/session')->addError("failed to create the website");}
-		}
+		}else{Mage::getSingleton('adminhtml/session')->addError("failed to create the root category");}
 
 		$this->_redirect('*/*/');
 		
