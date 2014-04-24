@@ -195,14 +195,23 @@ class Wsu_Storepartitions_Model_Role {
             $this->_canAddStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getCanAddStoreViews();
         }
         return $this->_canAddStoreViews;
-    }	
+    }
     public function canEditStoreViews() {
         if (null == $this->_canEditStoreViews) {
             $this->_canEditStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getEditStoreViews();
         }
         return $this->_canEditStoreViews;
-    }		
+    }
+    public function canAddStoreGroups() {
+        if (null == $this->_canAddStoreGroups) {
+            $this->_canAddStoreGroups = (bool) $this->_getRecordCollection()->getFirstItem()->getAddStoreGroups();
+        }
+        return $this->_canAddStoreGroups;
+    }
 	
+	
+	
+		
     // product permissions
     public function isOwnProduct($product) {
         $productOwnerId = $product->getCreatedBy();
