@@ -88,19 +88,6 @@ store['content_heading']
             $fieldset = $form->addFieldset('store_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store View Information')
             ));
-            $fieldset->addField('store_name', 'text', array(
-                'name'      => 'store[name]',
-                'label'     => Mage::helper('core')->__('Name'),
-                'value'     => "",
-                'required'  => true,
-            ));
-            $fieldset->addField('store_code', 'text', array(
-                'name'      => 'store[code]',
-                'label'     => Mage::helper('core')->__('Code'),
-                'value'     => "",
-                'required'  => true,
-            ));
-
 
 
             $fieldset = $form->addFieldset('store_cms_fieldset', array(

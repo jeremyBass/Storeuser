@@ -59,8 +59,8 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 				 );
 				if( $storeGroupId>0 ){
 					$storeId = $SU_Helper->make_store( $siteId, $storeGroupId, array(
-								'code'=>$postData['store']['code'],
-								'name'=>$postData['store']['name']
+								'code'=>$postData['website']['code'],
+								'name'=>"base default veiw "
 								) );
 					if( $storeId>0 ){
 						if(!empty($postData['store']['home_layout'])){
