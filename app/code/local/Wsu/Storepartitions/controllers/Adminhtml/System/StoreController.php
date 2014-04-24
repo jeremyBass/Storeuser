@@ -67,6 +67,9 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 								'name'=>"base default veiw "
 								) );
 					if( $storeId>0 ){
+						
+						Mage::getSingleton('adminhtml/session')->addSuccess( Mage::helper('storeutilities')->__('A base store view was created for the new store') );
+						
 						if(!empty($postData['store']['home_layout'])){
 							$SU_Helper->createCmsPage($storeId,array(
 								'title' => $postData['store']['title'],
