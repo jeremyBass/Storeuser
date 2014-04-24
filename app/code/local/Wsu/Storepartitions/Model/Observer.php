@@ -61,6 +61,7 @@ class Wsu_Storepartitions_Model_Observer {
         $canEditOwnProductsOnly = (int) $request->getPost('caneditownproductsonly');
 		$canAddStoreViews		= (int) $request->getPost('canaddstoreviews');
 		$canEditStoreViews		= (int) $request->getPost('caneditstoreviews');
+		$canAddStoreGroups		= (int) $request->getPost('canaddstoregroups');
         $selectedStoreIds       = $request->getPost('store_switcher');
         $storeCategoryIds       = $request->getPost('store_category_ids');
         foreach ($selectedStoreIds as $storeId => $storeviewIds) {
@@ -81,6 +82,7 @@ class Wsu_Storepartitions_Model_Observer {
             $advancedrole->setData('can_edit_own_products_only', $canEditOwnProductsOnly);
 			$advancedrole->setData('can_add_store_views', $canAddStoreViews);
 			$advancedrole->setData('can_edit_store_views', $canEditStoreViews);
+			$advancedrole->setData('can_add_store_groups', $canAddStoreGroups);
             $advancedrole->save();
         }
     }
