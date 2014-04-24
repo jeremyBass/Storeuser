@@ -50,6 +50,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
             'class'     => 'quickadd',
         ));
 		$limited = false;
+		$role = Mage::getSingleton('storepartitions/role');
 		if ( !$role->canAddStoreGroups() ) {
 			$this->_removeButton('add_group');
 			$limited = true;
