@@ -208,7 +208,12 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canAddStoreGroups;
     }
-	
+    public function canEditStoreGroups() {
+        if (null == $this->_canEditStoreGroups) {
+            $this->_canEditStoreGroups = (bool) $this->_getRecordCollection()->getFirstItem()->getEditStoreGroups();
+        }
+        return $this->_canEditStoreGroups;
+    }	
 	
 	
 		
