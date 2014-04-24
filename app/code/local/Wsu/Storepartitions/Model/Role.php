@@ -196,7 +196,12 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canAddStoreViews;
     }	
-	
+    public function canEditStoreViews() {
+        if (null == $this->_canEditStoreViews) {
+            $this->_canEditStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getEditStoreViews();
+        }
+        return $this->_canEditStoreViews;
+    }		
 	
     // product permissions
     public function isOwnProduct($product) {
