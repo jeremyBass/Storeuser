@@ -32,6 +32,7 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
 							->setCanAddStoreGroups($loadAitRole->getCanAddStoreGroups())
 							->setCanEditStoreGroups($loadAitRole->getCanEditStoreGroups())
 							->setCanAddWebSites($loadAitRole->getCanAddWebSites())
+							->setCanEditWebSites($loadAitRole->getCanEditWebSites())
 							->save();
             }
         }
