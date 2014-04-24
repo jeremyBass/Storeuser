@@ -96,6 +96,12 @@ class Wsu_Storepartitions_Model_Observer {
         $request                = Mage::app()->getRequest();
         $canUpdateGlobalAttr    = (int) $request->getPost('allowupdateglobalattrs');
         $canEditOwnProductsOnly = (int) $request->getPost('caneditownproductsonly');
+		$canAddStoreViews		= (int) $request->getPost('canaddstoreviews');
+		$canEditStoreViews		= (int) $request->getPost('caneditstoreviews');
+		$canAddStoreGroups		= (int) $request->getPost('canaddstoregroups');
+		$canEditStoreGroups		= (int) $request->getPost('caneditstoregroups');
+		$canAddWebSites			= (int) $request->getPost('canaddwebsites');
+		$canEditWebSites		= (int) $request->getPost('caneditwebsites');
         foreach ($request->getPost('website_switcher') as $websiteId) {
             $advancedrole = Mage::getModel('storepartitions/advancedrole');
             $advancedrole->setData('role_id', $roleId);
@@ -104,6 +110,12 @@ class Wsu_Storepartitions_Model_Observer {
             $advancedrole->setData('category_ids', '');
             $advancedrole->setData('can_edit_global_attr', $canUpdateGlobalAttr);
             $advancedrole->setData('can_edit_own_products_only', $canEditOwnProductsOnly);
+			$advancedrole->setData('can_add_store_views', $canAddStoreViews);
+			$advancedrole->setData('can_edit_store_views', $canEditStoreViews);
+			$advancedrole->setData('can_add_store_groups', $canAddStoreGroups);
+			$advancedrole->setData('can_edit_store_groups', $canEditStoreGroups);
+			$advancedrole->setData('can_add_web_sites', $canAddWebSites);
+			$advancedrole->setData('can_edit_web_sites', $canEditWebSites);
             $advancedrole->save();
         }
     }
