@@ -49,15 +49,18 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
             'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/quickAdd') .'\')',
             'class'     => 'quickadd',
         ));
-
+		$limited = false;
 		if ( !$role->canAddStoreGroups() ) {
-			 $this->_removeButton('add_group');
+			$this->_removeButton('add_group');
+			$limited = true;
 		}
 		if ( !$role->canAddStoreViews() ) {
-			 $this->_removeButton('add_store');
+			$this->_removeButton('add_store');
+			$limited = true;
 		}
 		if ( !$role->canAddWebSites() ) {
-			 $this->_removeButton('add');
+			$this->_removeButton('add');
+			$limited = true;
 		}
 
         return parent::_prepareLayout();
