@@ -60,6 +60,8 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 					$siteId, $newRootCat
 				 );
 				if( $storeGroupId>0 ){
+					Mage::getSingleton('adminhtml/session')->addSuccess( $postData['storegroup']['name']." [".$postData['storegroup']['baseurl']."](${storeGroupId}) ".Mage::helper('storeutilities')->__(' site group was created') );
+					
 					$storeId = $SU_Helper->make_store( $siteId, $storeGroupId, array(
 								'code'=>$postData['website']['code'],
 								'name'=>"base default veiw "
