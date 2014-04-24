@@ -46,47 +46,40 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		
 		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
-			$siteId = $SU_Helper->make_website(array('code'=>$postData['website']['code'],'name'=>$postData['website']['name']));
-			if( $siteId>0 ){
-				$storeGroupId = $SU_Helper->make_storeGroup( array('name'=>'Student Store'), 'student.store.mage.dev', $siteId, $newRootCat );
-				if( $storeGroupId>0 ){
-					$storeId = $SU_Helper->make_store( $siteId, $storeGroupId, array('code'=>'studentstore','name'=>'base default veiw') );
-					if( $storeId>0 ){
-						$SU_Helper->moveStoreProducts( $siteId, $storeId, $newRootCat );
-						$storeCmsLayouts = array(
-							'col1'=>array(
-								'twelfths'=>'seven-twelfths',
-								'blocks'=>array(
-									'blocktop'=>'<a href="{{store direct_url="#"}}"> <img src="{{storemedia url="/lefttop_ad_block.jpg"}}" alt="" border="0" /> </a>',
-									'blockbottom'=>'<img src="{{storemedia url="/rightbottom_ad_block.jpg"}}" alt="" border="0" />'
-								)
-							),
-							'col2'=>array(
-								'twelfths'=>'five-twelfths',
-								'blocks'=>array(
-									'blocktop'=>'<img src="{{storemedia url="/trasparent-placeholder-missing-image.png"}}" alt=""  border="0" />',
-									'blockbottom'=>'<img src="{{storemedia url="/trasparent-placeholder-missing-image.png"}}" alt=""  border="0" />'
-								)
-							)
-						);
-						$CMShtml="";
-						foreach($storeCmsLayouts as $col=>$part){
-							$CMShtml.="<div class='column ".$part['twelfths']."'>".$part['blocks']['blocktop'].$part['blocks']['blockbottom']."</div>";
-						}
-						$SU_Helper->createCmsPage($storeId,array(
-							'title' => 'Student store',
-							'identifier' => 'home',
-							'content_heading' => '',
-							'is_active' => 1,
-							'stores' => array($storeId),//available for all store views
-							'content' => str_replace('{CMShtml}',$CMShtml,$defaultCmsPage)
+			$siteId = $SU_Helper->make_website(array(
+							'code'=>$postData['website']['code'],
+							'name'=>$postData['website']['name']
 						));
-						
+			if( $siteId>0 ){
+				$storeGroupId = $SU_Helper->make_storeGroup( array(
+						'name'=>$postData['storegroup']['name']
+					),
+					$postData['storegroup']['baseurl'],
+					$siteId, $newRootCat
+				 );
+				if( $storeGroupId>0 ){
+					$storeId = $SU_Helper->make_store( $siteId, $storeGroupId, array(
+								'code'=>$postData['store']['code'],
+								'name'=>$postData['store']['name']
+								) );
+					if( $storeId>0 ){
+						if(!empty($postData['store']['home_layout'])){
+							$SU_Helper->createCmsPage($storeId,array(
+								'title' => $postData['store']['title'],
+								'identifier' => 'home',
+								'content_heading' => $postData['store']['content_heading'],
+								'is_active' => 1,
+								'stores' => array($storeId),//available for all store views
+								'content' => $postData['store']['home_layout']
+							));
+						}
+						/*
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_color', 'crimson', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_tool_bar_color', 'lighter', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_bleed', '0', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/max_width', '1188', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/fluid_width', 'hybrid', 'websites', $siteId);
+						*/
 					}
 				}
 			}
