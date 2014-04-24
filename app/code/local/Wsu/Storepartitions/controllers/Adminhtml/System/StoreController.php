@@ -88,7 +88,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 						$cDat->saveConfig('wsu_themecontrol_design/spine/fluid_width', 'hybrid', 'websites', $siteId);
 						*/
 						
-					}
+					}else{Mage::getSingleton('adminhtml/session')->addError("failed to create the store view");}
 				}
 			}
 		}
