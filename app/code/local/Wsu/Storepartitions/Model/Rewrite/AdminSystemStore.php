@@ -32,7 +32,16 @@ class Wsu_Storepartitions_Model_Rewrite_AdminSystemStore extends Mage_Adminhtml_
         }
         return $this;
     }
-	
+
+
+
+    /**
+     * Get websites as id => name associative array
+     *
+     * @param bool $withDefault
+     * @param string $attribute
+     * @return array
+     */	
     public function getWebsiteOptionHash($withDefault = false, $attribute = 'name'){
         $options = array();
 		$role                   = Mage::getSingleton('storepartitions/role');
@@ -45,5 +54,7 @@ class Wsu_Storepartitions_Model_Rewrite_AdminSystemStore extends Mage_Adminhtml_
         }
         return $options;
     }
+
+
 	
 }
