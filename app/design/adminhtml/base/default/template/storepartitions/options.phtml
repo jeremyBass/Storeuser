@@ -23,3 +23,18 @@
         <b><?php echo $this->__('Allow manage own products only') ?></b>
     </label>
 </div>
+
+<div style="background-color: whiteSmoke;">
+    <input type="checkbox"
+        <?php echo $this->canAddStoreViews() ? 'checked="checked"' : '' ?>
+           name="canaddstoreviews"
+           id="canaddstoreviews"
+           value="1" />&nbsp;
+    <label for="canaddstoreviews">
+        <b><?php echo $this->__('Allow manage own products only') ?></b>
+    </label>
+</div>
+
+
+
+
