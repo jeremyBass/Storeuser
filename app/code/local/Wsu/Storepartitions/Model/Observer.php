@@ -59,6 +59,7 @@ class Wsu_Storepartitions_Model_Observer {
         $request                = Mage::app()->getRequest();
         $canUpdateGlobalAttr    = (int) $request->getPost('allowupdateglobalattrs');
         $canEditOwnProductsOnly = (int) $request->getPost('caneditownproductsonly');
+		$canAddStoreViews		= (int) $request->getPost('canAddStoreViews');
         $selectedStoreIds       = $request->getPost('store_switcher');
         $storeCategoryIds       = $request->getPost('store_category_ids');
         foreach ($selectedStoreIds as $storeId => $storeviewIds) {
@@ -77,6 +78,7 @@ class Wsu_Storepartitions_Model_Observer {
             $advancedrole->setData('website_id', 0);
             $advancedrole->setData('can_edit_global_attr', $canUpdateGlobalAttr);
             $advancedrole->setData('can_edit_own_products_only', $canEditOwnProductsOnly);
+			$advancedrole->setData('can_add_store_views', $canAddStoreViews);
             $advancedrole->save();
         }
     }
