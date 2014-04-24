@@ -43,7 +43,13 @@ class Wsu_Storepartitions_Model_Advancedrole extends Mage_Core_Model_Abstract {
         }
         return true;
     }
-	
+    public function canAddStoreGroups($roleId) {
+        $recordCollection = $this->getCollection()->loadByRoleId($roleId);
+        if ($recordCollection->getSize()) {
+            return (bool) $recordCollection->getFirstItem()->getCanAddStoreGroups();
+        }
+        return true;
+    }
 	
 	
 	
