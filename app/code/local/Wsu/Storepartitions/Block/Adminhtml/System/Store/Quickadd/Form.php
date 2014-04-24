@@ -85,11 +85,6 @@ store['content_heading']
             ));
 
 
-            $fieldset = $form->addFieldset('store_fieldset', array(
-                'legend' => Mage::helper('core')->__('Store View Information')
-            ));
-
-
             $fieldset = $form->addFieldset('store_cms_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store CMS home page')
             ));
