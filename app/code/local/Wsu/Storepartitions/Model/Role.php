@@ -21,6 +21,7 @@ class Wsu_Storepartitions_Model_Role {
     private $_canEditGlobalAttributes = null;
     private $_canEditOwnProductsOnly = null;
     private $_canAddStoreViews = null;
+	private $_canEditStoreViews = null;
 	private $_canAddStoreGroups = null;
 	private $_canEditStoreGroups = null;
 	private $_canAddWebSites = null;
