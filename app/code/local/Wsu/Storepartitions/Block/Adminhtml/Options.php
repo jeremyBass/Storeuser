@@ -22,7 +22,9 @@ class Wsu_Storepartitions_Block_Adminhtml_Options extends Mage_Core_Block_Templa
     public function canEditStoreGroups() {
         return Mage::getModel('storepartitions/advancedrole')->canEditStoreGroups($this->_getRoleId());
     }		
-	
+    public function canAddWebSites() {
+        return Mage::getModel('storepartitions/advancedrole')->canAddWebSites($this->_getRoleId());
+    }		
 	
     private function _getRoleId() {
         return Mage::app()->getRequest()->getParam('rid');
