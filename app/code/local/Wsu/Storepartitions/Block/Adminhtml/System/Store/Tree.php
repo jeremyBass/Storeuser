@@ -11,6 +11,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Tree extends Mage_Adminht
 		if (!$this->getRequest()->getParam('classic')) {
 			$this->setTemplate('wsu/storepartitions/store/managestores.phtml');
 		}
+
 	}
 
 	/**

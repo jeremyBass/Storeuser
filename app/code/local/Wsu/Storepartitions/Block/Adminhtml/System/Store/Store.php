@@ -43,6 +43,8 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
     }
 
     protected function _prepareLayout() {
+
+
         /* Add website button */
         $this->_addButton('quickadd', array(
             'label'     => Mage::helper('storepartitions')->__('Quick Add'),
@@ -51,6 +53,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
         ));
 		$limited = false;
 		$role = Mage::getSingleton('storepartitions/role');
+		
 		if ( !$role->canAddStoreGroups() ) {
 			$this->_removeButton('add_group');
 			$limited = true;
@@ -63,12 +66,9 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
 			$this->_removeButton('add');
 			$limited = true;
 		}
-
-		if($limited){
+		if($limited!=false){
 			$this->_removeButton('quickadd');
 		}
-
-
         return parent::_prepareLayout();
     }
 
