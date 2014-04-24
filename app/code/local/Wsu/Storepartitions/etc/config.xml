@@ -186,6 +186,7 @@
           <customer_edit>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEdit</customer_edit>
           <customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerGrid</customer_grid>
           <customer_online_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerOnlineGrid</customer_online_grid>
+		  <customer_edit_tab_view_orders>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEditTabViewOrders</customer_edit_tab_view_orders>
           <catalog_product_helper_form_gallery>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductHelperFormGallery</catalog_product_helper_form_gallery>
           <system_config_switcher>Wsu_Storepartitions_Block_Rewrite_AdminSystemConfigSwitcher</system_config_switcher>
           <catalog_category_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryEditForm</catalog_category_edit_form>
