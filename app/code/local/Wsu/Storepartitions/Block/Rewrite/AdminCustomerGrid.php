@@ -3,31 +3,29 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCustomerGrid extends Mage_Adminhtml
 	
 	
 	
-    protected function _prepareCollection()
-    {
+    protected function _prepareCollection() {
         $collection = Mage::getResourceModel('customer/customer_collection')
             ->addNameToSelect()
             ->addAttributeToSelect('email')
             ->addAttributeToSelect('created_at')
             ->addAttributeToSelect('group_id')
-			->addAttributeToSelect('website_id')
-            ->joinAttribute('billing_postcode', 'customer_address/postcode', 'default_billing', null, 'left')
-            ->joinAttribute('billing_city', 'customer_address/city', 'default_billing', null, 'left')
-            ->joinAttribute('billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left')
-            ->joinAttribute('billing_region', 'customer_address/region', 'default_billing', null, 'left')
-            ->joinAttribute('billing_country_id', 'customer_address/country_id', 'default_billing', null, 'left');
+			->addAttributeToSelect('website_id');
+
 
 
        
             $role = Mage::getSingleton('storepartitions/role');
             if ($role->isPermissionsEnabled()) {
-				var_dump($role->getAllowedWebsiteIds());
                 $collection->addFieldToFilter('website_id', array(
                     'in' => $role->getAllowedWebsiteIds()
                 ));
 
             }
-        
+           $collection->joinAttribute('billing_postcode', 'customer_address/postcode', 'default_billing', null, 'left')
+            ->joinAttribute('billing_city', 'customer_address/city', 'default_billing', null, 'left')
+            ->joinAttribute('billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left')
+            ->joinAttribute('billing_region', 'customer_address/region', 'default_billing', null, 'left')
+            ->joinAttribute('billing_country_id', 'customer_address/country_id', 'default_billing', null, 'left');     
 
 
         $this->setCollection($collection);
