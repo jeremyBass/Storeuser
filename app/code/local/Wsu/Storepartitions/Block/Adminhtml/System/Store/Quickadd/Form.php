@@ -103,6 +103,28 @@ store['content_heading']
 
 
 
+            $fieldset = $form->addFieldset('store_cms_fieldset', array(
+                'legend' => Mage::helper('core')->__('Store CMS home page')
+            ));
+            $fieldset->addField('store_title', 'text', array(
+                'name'      => 'store[title]',
+                'label'     => Mage::helper('core')->__('Title'),
+                'value'     => "",
+                'required'  => true,
+            ));
+            $fieldset->addField('store_content_heading', 'text', array(
+                'name'      => 'store[content_heading]',
+                'label'     => Mage::helper('core')->__('Content Heading'),
+                'value'     => "",
+                'required'  => true,
+            ));
+            $fieldset->addField('store_home_layout', 'textarea', array(
+                'name'      => 'store[home_layout]',
+                'label'     => Mage::helper('core')->__('layout'),
+                'value'     => "",
+                'required'  => true,
+            ));
+
         $form->setAction($this->getUrl('*/*/quickAddSave'));
         $form->setUseContainer(true);
         $this->setForm($form);
