@@ -63,16 +63,6 @@ store['content_heading']
                 'required'  => true,
             ));
 
-             $fieldset->addField('is_default', 'hidden', array(
-                    'name'      => 'website[is_default]',
-                    'value'     => ""
-                ));
-
-            $fieldset->addField('website_website_id', 'hidden', array(
-                'name'  => 'website[website_id]',
-                'value' => ""
-            ));
-
 
             $fieldset = $form->addFieldset('group_fieldset', array(
                 'legend' => Mage::helper('core')->__('Store Information')
@@ -86,21 +76,17 @@ store['content_heading']
                 'required'  => true,
             ));
 
-            $categories = Mage::getModel('adminhtml/system_config_source_category')->toOptionArray();
-
-            $fieldset->addField('group_root_category_id', 'select', array(
-                'name'      => 'group[root_category_id]',
-                'label'     => Mage::helper('core')->__('Root Category'),
+            $fieldset->addField('root_cat', 'text', array(
+                'name'      => 'root_cat',
+                'label'     => Mage::helper('core')->__('Root Category Name'),
                 'value'     => "",
-                'values'    => $categories,
                 'required'  => true,
             ));
-
-
-            $fieldset->addField('group_group_id', 'hidden', array(
-                'name'      => 'group[group_id]',
-                'no_span'   => true,
-                'value'     => ""
+            $fieldset->addField('root_cat', 'text', array(
+                'name'      => 'storegroup[baseurl]',
+                'label'     => Mage::helper('core')->__('Base Url'),
+                'value'     => "",
+                'required'  => true,
             ));
 
 
