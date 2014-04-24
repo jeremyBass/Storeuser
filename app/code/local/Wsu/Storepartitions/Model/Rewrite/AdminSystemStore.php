@@ -74,6 +74,23 @@ class Wsu_Storepartitions_Model_Rewrite_AdminSystemStore extends Mage_Adminhtml_
         return $options;
     }
 
+    /**
+     * Get store groups as id => name associative array
+     *
+     * @param string $attribute
+     * @return array
+     */
+    public function getStoreGroupOptionHash($attribute = 'name') {
+		$role = Mage::getSingleton('storepartitions/role');
+		$allowedStoreIds = $role->getAllowedStoreIds();
+        foreach ($this->_groupCollection as $group) {
+			if(in_array($store->getId(),$allowedStoreIds)){
+            	$options[$group->getId()] = $group->getDataUsingMethod($attribute);
+			}
+        }
+        return $options;
+    }
+
 
 	
 }
