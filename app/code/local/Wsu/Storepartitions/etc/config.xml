@@ -165,6 +165,33 @@
       <storepartitions>
         <class>Wsu_Storepartitions_Block</class>
       </storepartitions>
+      <checkout>
+        <rewrite>
+          <cart_sidebar>Wsu_Storeutilities_Block_Cart_Sidebar</cart_sidebar>
+          <cart_item_renderer>Wsu_Storeutilities_Block_Cart_Item_Renderer</cart_item_renderer>
+        </rewrite>
+      </checkout>
+	  
+	  
+	  
+	  <!-- adminhtml blocks -->
+      <bundle>
+        <rewrite>
+          <adminhtml_catalog_product_edit_tab_attributes_extend>Wsu_Storepartitions_Block_Rewrite_BundleAdminhtmlCatalogProductEditTabAttributesExtend</adminhtml_catalog_product_edit_tab_attributes_extend>
+          <adminhtml_catalog_product_edit_tab_attributes_special>Wsu_Storepartitions_Block_Rewrite_BundleAdminhtmlCatalogProductEditTabAttributesSpecial</adminhtml_catalog_product_edit_tab_attributes_special>
+        </rewrite>
+      </bundle>
+      <downloadable>
+        <rewrite>
+          <adminhtml_catalog_product_edit_tab_downloadable_links>Wsu_Storepartitions_Block_Rewrite_DownloadableAdminhtmlCatalogProductEditTabDownloadableLinks</adminhtml_catalog_product_edit_tab_downloadable_links>
+        </rewrite>
+      </downloadable>
+      <widget>
+        <rewrite>
+          <adminhtml_widget_instance_grid>Wsu_Storepartitions_Block_Rewrite_AdminhtmlWidgetInstanceGrid</adminhtml_widget_instance_grid>
+          <adminhtml_widget_instance_edit>Wsu_Storepartitions_Block_Rewrite_AdminhtmlWidgetInstanceEdit</adminhtml_widget_instance_edit>
+        </rewrite>
+      </widget>
       <adminhtml>
         <rewrite>
 		<!-- Sets up the quick add store and such -->
@@ -221,23 +248,6 @@
           <newsletter_subscriber_grid>Wsu_Storepartitions_Block_Rewrite_AdminNewsletterSubscriberGrid</newsletter_subscriber_grid>
         </rewrite>
       </adminhtml>
-      <bundle>
-        <rewrite>
-          <adminhtml_catalog_product_edit_tab_attributes_extend>Wsu_Storepartitions_Block_Rewrite_BundleAdminhtmlCatalogProductEditTabAttributesExtend</adminhtml_catalog_product_edit_tab_attributes_extend>
-          <adminhtml_catalog_product_edit_tab_attributes_special>Wsu_Storepartitions_Block_Rewrite_BundleAdminhtmlCatalogProductEditTabAttributesSpecial</adminhtml_catalog_product_edit_tab_attributes_special>
-        </rewrite>
-      </bundle>
-      <downloadable>
-        <rewrite>
-          <adminhtml_catalog_product_edit_tab_downloadable_links>Wsu_Storepartitions_Block_Rewrite_DownloadableAdminhtmlCatalogProductEditTabDownloadableLinks</adminhtml_catalog_product_edit_tab_downloadable_links>
-        </rewrite>
-      </downloadable>
-      <widget>
-        <rewrite>
-          <adminhtml_widget_instance_grid>Wsu_Storepartitions_Block_Rewrite_AdminhtmlWidgetInstanceGrid</adminhtml_widget_instance_grid>
-          <adminhtml_widget_instance_edit>Wsu_Storepartitions_Block_Rewrite_AdminhtmlWidgetInstanceEdit</adminhtml_widget_instance_edit>
-        </rewrite>
-      </widget>
     </blocks>
 	
 
