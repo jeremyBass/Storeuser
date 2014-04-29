@@ -178,8 +178,8 @@
       </storepartitions>
       <checkout>
         <rewrite>
-          <cart_sidebar>Wsu_Storeutilities_Block_Cart_Sidebar</cart_sidebar>
-          <cart_item_renderer>Wsu_Storeutilities_Block_Cart_Item_Renderer</cart_item_renderer>
+          <cart_sidebar>Wsu_Storepartitions_Block_Cart_Sidebar</cart_sidebar>
+          <cart_item_renderer>Wsu_Storepartitions_Block_Cart_Item_Renderer</cart_item_renderer>
         </rewrite>
       </checkout>
 	  
