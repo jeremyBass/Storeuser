@@ -120,6 +120,17 @@
         </connection>
       </storepartitions_read>
     </resources>
+    <helpers>
+      <storepartitions>
+        <class>Wsu_Storepartitions_Helper</class>
+      </storepartitions>
+      <checkout>
+        <rewrite>
+          <url>Wsu_Storepartitions_Helper_Url</url>
+          <!--<cart>Wsu_Storeutilities_Helper_Cart</cart>-->
+        </rewrite>
+      </checkout>
+    </helpers>
     <models>
       <storepartitions>
         <class>Wsu_Storepartitions_Model</class>
@@ -249,16 +260,6 @@
         </rewrite>
       </adminhtml>
     </blocks>
-	
-
-	
-	
-	
-    <helpers>
-      <storepartitions>
-        <class>Wsu_Storepartitions_Helper</class>
-      </storepartitions>
-    </helpers>
     <events>
       <model_save_before>
         <observers>
