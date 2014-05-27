@@ -7,6 +7,8 @@
       <self_name>Store User Permissions</self_name>
       <priority>1250</priority>
 	  <depends>
+		 <Mage_Sales /><!-- so it's loaded after Mage_Sales -->
+		 <Mage_Checkout /><!-- so it's loaded after Mage_Checkout -->
 		 <Mage_Widget />
 	 </depends>
     </Wsu_Storepartitions>
