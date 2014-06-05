@@ -93,8 +93,6 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</showallproducts>
-					</fields>
-					<fields>
 						<showallcustomers translate="label comment">
 							<label>Show All Customers</label>
 							<comment>If set to "No" user with restricted permissions can view customers from the website of the allowed store only.</comment>
@@ -105,8 +103,6 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>0</show_in_store>
 						</showallcustomers>
-					</fields>
-					<fields>
 						<allowdelete translate="label comment">
 							<label>Allow Deletion (Store-view restriction)</label>
 							<comment>If set to "Yes" user with restricted permissions per Store-view can delete products, product images and categories.</comment>
@@ -117,8 +113,6 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</allowdelete>
-					</fields>
-					<fields>
 						<allowdelete_perwebsite translate="label comment">
 							<label>Allow Deletion (Website restriction)</label>
 							<comment>If set to "Yes" user with restricted permissions per Website can delete products, product images and categories.</comment>
@@ -129,6 +123,26 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</allowdelete_perwebsite>
+                        <show_admin_on_product_grid translate="label">
+                            <label>Show product owner login on Catalog product grid</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_admin_on_product_grid>
+                        <allow_null_category translate="label">
+                            <label>Show products without categories</label>
+                            <comment>If set to "No" sub-admin will not be able to see products, which don't have any category assigned. Only Super Admin will be able to see such products.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_null_category>
 					</fields>
 				</general>
 				<su translate="label" module="storepartitions">
@@ -168,6 +182,43 @@
 						</template>
 					</fields>
 				</su>
+                <sucategories translate="label" module="storepartitions">
+                    <label>New Categories Approve</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>160</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable New Categories Approve</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+                        <email translate="label">
+                            <label>Use custom email to send notifications</label>
+                            <comment>If the field is empty, the notification will sent to the standard admin sales e-mail</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </email>
+                        <template translate="label">
+                            <label>Email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </template>
+                    </fields>
+                </sucategories>
 			</groups>
 		</storepartitions>
 	</sections>
