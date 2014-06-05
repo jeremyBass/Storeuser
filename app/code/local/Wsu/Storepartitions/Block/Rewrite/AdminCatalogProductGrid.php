@@ -37,13 +37,72 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductGrid extends Mage_Adm
                 '_current' => true
             ))
         ));
+        if(!$role->isPermissionsEnabled() && Mage::helper('storepartitions')->isShowProductOwner()) {
+            $owners = $this->_addToOwnersEmptyValueForAssign();
+            $this->getMassactionBlock()->addItem('created_by', array(
+                'label' => Mage::helper('catalog')->__('Set owner'),
+                'url' => $this->getUrl('storepartitions/adminhtml_catalogProduct/massOwner', array('_current' => true)),
+                'additional' => array(
+                    'visibility' => array(
+                        'name' => 'created_by',
+                        'type' => 'select',
+                        'class' => 'required-entry',
+                        'label' => Mage::helper('catalog')->__('Owner name'),
+                        'values' => $owners
+                    )
+                )
+            ));
+        }
         return $this;
     }
+    protected function _addToOwnersEmptyValueForAssign() {
+        $owners = Mage::getSingleton('storepartitions/source_admins')->getOptionArray();
+        $owners = array_diff($owners, array(""));
+        $owners[0] = null;
+        ksort($owners);
+        return $owners;
+    }
+    
     protected function _toHtml() {
-        $allowedWebisteIds = Mage::getSingleton('storepartitions/role')->getAllowedWebsiteIds();
-        if (count($allowedWebisteIds) <= 1) {
-            unset($this->_columns['websites']);
+        if(Mage::getSingleton('storepartitions/role')->isPermissionsEnabled()) 
+        {
+            $allowedWebisteIds = Mage::getSingleton('storepartitions/role')->getAllowedWebsiteIds();
+            if (count($allowedWebisteIds) <= 1)
+            {
+                unset($this->_columns['websites']);
+            }
         }
         return parent::_toHtml();
+    }
+
+    protected function _prepareCollection() {
+        $this->_allowUpdateCollection = true;
+        parent::_prepareCollection();
+        $this->_allowUpdateCollection = false;
+        return $this;
+    }
+
+    public function setCollection($collection) {
+        if($this->_allowUpdateCollection && !Mage::getSingleton('storepartitions/role')->isPermissionsEnabled() && Mage::helper('storepartitions')->isShowProductOwner()) {
+            $collection->joinAttribute('created_by', 'catalog_product/created_by', 'entity_id', null, 'left');
+        }
+        return parent::setCollection($collection);
+    }
+
+    protected function _prepareColumns()
+    {
+        parent::_prepareColumns();
+        if(!Mage::getSingleton('storepartitions/role')->isPermissionsEnabled() && Mage::helper('storepartitions')->isShowProductOwner()) {
+            $this->addColumnAfter('created_by',
+                array(
+                    'header'=> Mage::helper('storepartitions')->__('Owner'),
+                    'width' => '70px',
+                    'index' => 'created_by',
+                    'type'  => 'options',
+                    'options' => array_diff(Mage::getSingleton('storepartitions/source_admins')->getOptionArray(), array(""))
+            ), 'status');
+            $this->sortColumnsByOrder();
+        }
+        return $this;
     }
 }
