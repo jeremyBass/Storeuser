@@ -210,53 +210,60 @@
 			<system_store_quickadd_form>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form</system_store_quickadd_form>
 			<system_store_tree>Wsu_Storepartitions_Block_Adminhtml_System_Store_Tree</system_store_tree>
 			<system_store_store>Wsu_Storepartitions_Block_Adminhtml_System_Store_Store</system_store_store>
+			<system_config_switcher>Wsu_Storepartitions_Block_Rewrite_AdminSystemConfigSwitcher</system_config_switcher>
 			
+			<permissions_editroles>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsEditroles</permissions_editroles>
+			<permissions_buttons>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsButtons</permissions_buttons>
 			
+			<catalog_category_tab_attributes>Aitoc_Aitpermissions_Block_Rewrite_AdminCatalogCategoryTabAttributes</catalog_category_tab_attributes>
+			<catalog_product_edit_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabWebsites</catalog_product_edit_tab_websites>
+			<catalog_product_edit_tab_categories>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories</catalog_product_edit_tab_categories>
+			<catalog_category_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryEditForm</catalog_category_edit_form>
+			<catalog_category_tree>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTree</catalog_category_tree>
+			<catalog_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductGrid</catalog_product_grid>
+			<catalog_product_edit_action_attribute_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditActionAttributeTabWebsites</catalog_product_edit_action_attribute_tab_websites>
+			<catalog_form_renderer_fieldset_element>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererFieldsetElement</catalog_form_renderer_fieldset_element>
+			<catalog_product_edit_action_attribute_tab_attributes>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabAttributes</catalog_product_edit_action_attribute_tab_attributes>
+			<catalog_product_edit_action_attribute_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabInventory</catalog_product_edit_action_attribute_tab_inventory>
+			<catalog_form_renderer_attribute_urlkey>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererAttributeUrlkey</catalog_form_renderer_attribute_urlkey>
+			<catalog_product_edit_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditTabInventory</catalog_product_edit_tab_inventory>
+			<catalog_product_helper_form_gallery>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductHelperFormGallery</catalog_product_helper_form_gallery>
+			<catalog_category_widget_chooser>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryWidgetChooser</catalog_category_widget_chooser>
 			
+			<store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher</store_switcher>
 			
-          <permissions_editroles>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsEditroles</permissions_editroles>
-          <permissions_buttons>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsButtons</permissions_buttons>
-          <catalog_product_edit_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabWebsites</catalog_product_edit_tab_websites>
-          <catalog_product_edit_tab_categories>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories</catalog_product_edit_tab_categories>
-          <store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher</store_switcher>
-          <tag_store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminTagStoreSwitcher</tag_store_switcher>
-          <sales_order_create_store_select>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderCreateStoreSelect</sales_order_create_store_select>
-          <catalog_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductGrid</catalog_product_grid>
-          <catalog_product_edit_action_attribute_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditActionAttributeTabWebsites</catalog_product_edit_action_attribute_tab_websites>
-          <sales_order_grid>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderGrid</sales_order_grid>
-          <customer_edit>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEdit</customer_edit>
-          <customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerGrid</customer_grid>
-          <customer_online_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerOnlineGrid</customer_online_grid>
-		  <customer_edit_tab_view_orders>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEditTabViewOrders</customer_edit_tab_view_orders>
-          <catalog_product_helper_form_gallery>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductHelperFormGallery</catalog_product_helper_form_gallery>
-          <system_config_switcher>Wsu_Storepartitions_Block_Rewrite_AdminSystemConfigSwitcher</system_config_switcher>
-          <catalog_category_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryEditForm</catalog_category_edit_form>
-          <catalog_category_tree>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTree</catalog_category_tree>
-          <cms_page_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageGrid</cms_page_grid>
-          <cms_page_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageEdit</cms_page_edit>
-          <cms_block_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockGrid</cms_block_grid>
-          <cms_block_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEditForm</cms_block_edit_form>
-          <cms_block_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEdit</cms_block_edit>
-          <poll_grid>Wsu_Storepartitions_Block_Rewrite_AdminPollGrid</poll_grid>
-          <poll_edit>Wsu_Storepartitions_Block_Rewrite_AdminPollEdit</poll_edit>
-          <catalog_category_widget_chooser>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryWidgetChooser</catalog_category_widget_chooser>
-          <report_product_viewed_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportProductViewedGrid</report_product_viewed_grid>
-          <report_review_customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportReviewCustomerGrid</report_review_customer_grid>
-          <report_sales_bestsellers_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesBestsellersGrid</report_sales_bestsellers_grid>
-          <report_sales_coupons_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesCouponsGrid</report_sales_coupons_grid>
-          <report_sales_invoiced_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesInvoicedGrid</report_sales_invoiced_grid>
-          <report_sales_refunded_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesRefundedGrid</report_sales_refunded_grid>
-          <report_sales_sales_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesSalesGrid</report_sales_sales_grid>
-          <report_sales_shipping_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesShippingGrid</report_sales_shipping_grid>
-          <report_sales_tax_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesTaxGrid</report_sales_tax_grid>
-          <report_shopcart_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartProductGrid</report_shopcart_product_grid>
-          <report_shopcart_abandoned_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartAbandonedGrid</report_shopcart_abandoned_grid>
-          <catalog_form_renderer_fieldset_element>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererFieldsetElement</catalog_form_renderer_fieldset_element>
-          <catalog_product_edit_action_attribute_tab_attributes>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabAttributes</catalog_product_edit_action_attribute_tab_attributes>
-          <catalog_product_edit_action_attribute_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabInventory</catalog_product_edit_action_attribute_tab_inventory>
-          <catalog_form_renderer_attribute_urlkey>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererAttributeUrlkey</catalog_form_renderer_attribute_urlkey>
-          <catalog_product_edit_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditTabInventory</catalog_product_edit_tab_inventory>
-          <newsletter_subscriber_grid>Wsu_Storepartitions_Block_Rewrite_AdminNewsletterSubscriberGrid</newsletter_subscriber_grid>
+			<tag_store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminTagStoreSwitcher</tag_store_switcher>
+			
+			<sales_order_create_store_select>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderCreateStoreSelect</sales_order_create_store_select>
+			<sales_order_grid>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderGrid</sales_order_grid>
+			
+			<customer_edit>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEdit</customer_edit>
+			<customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerGrid</customer_grid>
+			<customer_online_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerOnlineGrid</customer_online_grid>
+			<customer_edit_tab_view_orders>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEditTabViewOrders</customer_edit_tab_view_orders>
+
+			<cms_page_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageGrid</cms_page_grid>
+			<cms_page_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageEdit</cms_page_edit>
+			<cms_block_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockGrid</cms_block_grid>
+			<cms_block_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEditForm</cms_block_edit_form>
+			<cms_block_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEdit</cms_block_edit>
+			
+			<poll_grid>Wsu_Storepartitions_Block_Rewrite_AdminPollGrid</poll_grid>
+			<poll_edit>Wsu_Storepartitions_Block_Rewrite_AdminPollEdit</poll_edit>
+
+			<report_product_viewed_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportProductViewedGrid</report_product_viewed_grid>
+			<report_review_customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportReviewCustomerGrid</report_review_customer_grid>
+			<report_sales_bestsellers_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesBestsellersGrid</report_sales_bestsellers_grid>
+			<report_sales_coupons_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesCouponsGrid</report_sales_coupons_grid>
+			<report_sales_invoiced_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesInvoicedGrid</report_sales_invoiced_grid>
+			<report_sales_refunded_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesRefundedGrid</report_sales_refunded_grid>
+			<report_sales_sales_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesSalesGrid</report_sales_sales_grid>
+			<report_sales_shipping_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesShippingGrid</report_sales_shipping_grid>
+			<report_sales_tax_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesTaxGrid</report_sales_tax_grid>
+			<report_shopcart_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartProductGrid</report_shopcart_product_grid>
+			<report_shopcart_abandoned_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartAbandonedGrid</report_shopcart_abandoned_grid>
+			
+			<newsletter_subscriber_grid>Wsu_Storepartitions_Block_Rewrite_AdminNewsletterSubscriberGrid</newsletter_subscriber_grid>
         </rewrite>
       </adminhtml>
     </blocks>
