@@ -404,6 +404,14 @@
           </storepartitions>
         </observers>
       </controller_action_predispatch_adminhtml_catalog_product_review_massDelete>
+	<controller_action_postdispatch_adminhtml_catalog_category_save>
+		<observers>
+			<storepartitions>
+				<class>storepartitions/observer</class>
+				<method>onAdminhtmlCatalogCategorySavePostdispatch</method>
+			</storepartitions>
+		</observers>
+	</controller_action_postdispatch_adminhtml_catalog_category_save>
       <review_delete_before>
         <observers>
           <storepartitions>

@@ -7,6 +7,11 @@ class Wsu_Storepartitions_Model_Observer {
         $this->_helper       = Mage::helper('storepartitions');
         $this->_helperAccess = Mage::helper('storepartitions/access');
     }
+    protected function _addFilterAllowOwnProducts($collection) {
+        $idSubAdmin = Mage::getSingleton('admin/session')->getUser()->getId();
+        $collection->addAttributeToFilter('created_by', $idSubAdmin);
+        return $collection;
+    }
     private function _getCurrentRole() {
         if (null == $this->_role) {
             $this->_role = Mage::getSingleton('storepartitions/role');
@@ -128,6 +133,34 @@ class Wsu_Storepartitions_Model_Observer {
             $this->deleteAdvancedRole($role->getId());
         }
     }
+	
+	public function onCatalogProductValidateBefore($observer)  {
+        if (!Mage::getSingleton('admin/session')->getUser()) {
+            return;
+        }
+        $currentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getId();
+        if (!Mage::getModel('storepartitions/advancedrole')->load($currentUserRole, 'role_id')->getId() || Mage::app()->isSingleStoreMode()) {
+            return;
+        }
+
+        $request = Mage::app()->getFrontController()->getRequest();
+        $productData = $request->getPost('product');
+        if (isset($productData) && !isset($productData['website_ids'])) {
+            Mage::throwException($this->_helper->__('The product must be assigned to at least one website.'));
+        }
+    }
+    public function onCatalogCategoryTreeCanAddSubCategory($observer) {
+        $category = $observer->getCategory();
+        $options = $observer->getOptions();
+        if(!$category || $options->getIsAllow()!= true) {
+            return;
+        }
+        $role = Mage::getSingleton('storepartitions/role');
+        if($role->isPermissionsEnabled() && !in_array($category->getId(), $role->getAllowedCategoryIds())) {
+            $options->setIsAllow(false);
+        }
+    }
+	
     public function onCatalogProductEditAction($observer) {
         $role = $this->_getCurrentRole();
         if (!$role->isPermissionsEnabled()) {
@@ -158,42 +191,62 @@ class Wsu_Storepartitions_Model_Observer {
             $product->setData('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
         }
     }
-    /**
-     * @refactor
-     * add 3 sub methods
-     */
+
     public function onCatalogProductSaveAfter($observer) {
-        $controllerName = Mage::app()->getRequest()->getControllerName();
-        $actionName     = Mage::app()->getRequest()->getActionName();
-        if (!(Mage::getSingleton('catalog/session')->getIsNewProduct(true)) && !('catalog_product' == $controllerName && 'quickCreate' == $actionName)) {
+        if (!Mage::getSingleton('admin/session')->getUser()){ return; }        
+        $currentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getId();
+        if (!Mage::getModel('storepartitions/advancedrole')->load($currentUserRole, 'role_id')->getId()){
+            $this->_updateVisibilityBySuperadmin($observer);
             return;
         }
-        $product              = $observer->getProduct();
+        $controllerName = Mage::app()->getRequest()->getControllerName();
+        if (!(Mage::getSingleton('catalog/session')->getIsNewProduct(true)) && !('catalog_product' == $controllerName && Mage::helper('storepartitions')->isQuickCreate())){
+            return;
+        }
+        $product = $observer->getProduct();
         // setting created by attribute
-        $attributeTable       = Mage::getResourceModel('catalog/product_collection')->getTable('catalog_product_entity_int');
-        $productEntityTypeId  = $product->getEntityTypeId();
-        $createdByAttributeId = Mage::getModel('eav/entity_attribute')->load('created_by', 'attribute_code')->getId();
-        $adminId              = Mage::getSingleton('admin/session')->getUser()->getUserId();
-        $this->insertAttributeValue($attributeTable, $productEntityTypeId, $createdByAttributeId, 0, $product->getId(), $adminId);
+        $adminId = Mage::getSingleton('admin/session')->getUser()->getUserId();
+        if (!('catalog_product' == $controllerName && Mage::helper('storepartitions')->isQuickCreate())){
+            $product->addAttributeUpdate('created_by', $adminId, 0);
+        }
         $role = $this->_getCurrentRole();
-        if (!$role->isPermissionsEnabled()) {
+        if (!$role->isPermissionsEnabled()){
             return;
         }
         // setting selected visibility for allowed store views
-        $allowedStoreviewIds   = $role->getAllowedStoreviewIds();
-        $visibilityAttributeId = Mage::getModel('eav/entity_attribute')->load('visibility', 'attribute_code')->getId();
-        $visibility            = Mage::getSingleton('catalog/session')->getSelectedVisibility(true);
-        foreach ($allowedStoreviewIds as $allowedStoreviewId) {
-            $this->insertAttributeValue($attributeTable, $productEntityTypeId, $visibilityAttributeId, $allowedStoreviewId, $product->getId(), $visibility);
+        $allowedStoreviewIds = $role->getAllowedStoreviewIds();
+        $visibility = Mage::getSingleton('catalog/session')->getSelectedVisibility(true);
+        if(Mage::helper('storepartitions')->isQuickCreate() && $visibility == null){
+            $visibility = $product->getData('visibility');
+        }
+        foreach ($allowedStoreviewIds as $allowedStoreviewId){
+            $product->addAttributeUpdate('visibility', $visibility, $allowedStoreviewId);
         }
         // setting visibility "Nowhere" for all other store views
         $visibilityNotVisible = Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE;
         foreach (Mage::getModel('core/store')->getCollection() as $store) {
             if (0 != $store->getId() && (!in_array($store->getId(), $allowedStoreviewIds))) {
-                $this->insertAttributeValue($attributeTable, $productEntityTypeId, $visibilityAttributeId, $store->getId(), $product->getId(), $visibilityNotVisible);
+                $product->addAttributeUpdate('visibility', $visibilityNotVisible, $store->getId());
             }
         }
     }
+
+    protected function _updateVisibilityBySuperadmin($observer){
+    	$product = $observer->getProduct();
+    	$allowedStoreviewIds = $product->getStoreIds();
+        $visibility = $product->getData('visibility');
+        
+    	foreach (Mage::getModel('core/store')->getCollection() as $store){
+            if (0 != $store->getId() && (in_array($store->getId(), $allowedStoreviewIds))){            	
+                $this->updateAttributeValue(
+                    $store->getId(),
+                    $product->getId(),
+                    array('visibility' => $visibility)
+                );
+            }
+        }
+    }
+
     public function onCatalogProductCollectionLoadBefore($observer) {
         if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
             return;
@@ -202,7 +255,10 @@ class Wsu_Storepartitions_Model_Observer {
         if (false === strpos($routeName, 'adminhtml') && false === strpos($routeName, 'bundle')) {
             return;
         }
-        if (Mage::getStoreConfig('storepartitions/general/showallproducts')) {
+        $getCurrentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getRoleId();
+        $bCanEditOwn = Mage::getModel('storepartitions/advancedrole')->canEditOwnProductsOnly($getCurrentUserRole);
+
+        if ($bCanEditOwn === false && Mage::getStoreConfig('storepartitions/general/showallproducts') == true) {
             return;
         }
         $role           = $this->_getCurrentRole();
@@ -215,8 +271,16 @@ class Wsu_Storepartitions_Model_Observer {
             $collection->getSelect()->joinLeft(array(
                 'product_cat' => $collection->getTable('catalog_category_product')
             ), 'product_cat.product_id = e.entity_id', array());
-            $collection->getSelect()->where(' product_cat.category_id in (' . join(',', $role->getAllowedCategoryIds()) . ')
-                or product_cat.category_id IS NULL ');
+            if (Mage::helper('storepartitions')->isShowingProductsWithoutCategories() == 1) {
+                $collection->getSelect()->where(
+                    ' product_cat.category_id in (' . join(',', $role->getAllowedCategoryIds()) . ')
+                or product_cat.category_id IS NULL '
+                );
+            } else {
+                $collection->getSelect()->where(
+                    ' product_cat.category_id in (' . join(',', $role->getAllowedCategoryIds()) . ')'
+                );
+            }
             $collection->getSelect()->distinct(true);
         }
         if ($role->isScopeWebsite()) {
@@ -232,19 +296,11 @@ class Wsu_Storepartitions_Model_Observer {
             }
             $collection->addWebsiteFilter($websiteIds);
         }
-    }
-    protected function _getCurrentOrder() {
-        $orderId = Mage::app()->getRequest()->has('order_id');
-        if ($orderId) {
-            $order = Mage::getModel('sales/order')->load($orderId);
-            return $order;
+        if ($bCanEditOwn === true){
+            $this->_addFilterAllowOwnProducts($collection);
         }
-        $order = Mage::getSingleton('adminhtml/session_quote')->getOrder();
-        if ($order->getId()) {
-            return $order;
-        }
-        return null;
     }
+
     protected function _filterCollectionByPermissions($collection) {
         if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
             return;
@@ -255,15 +311,9 @@ class Wsu_Storepartitions_Model_Observer {
         if (false !== strpos(Mage::app()->getFrontController()->getRequest()->getRouteName(), 'adminhtml')) {
             $role = $this->_getCurrentRole();
             if ($role->isPermissionsEnabled()) {
-                if (version_compare(Mage::getVersion(), '1.4.1.0', '>')) {
-                    $collection->addAttributeToFilter('main_table.store_id', array(
-                        'in' => $role->getAllowedStoreviewIds()
-                    ));
-                } else {
-                    $collection->addAttributeToFilter('store_id', array(
-                        'in' => $role->getAllowedStoreviewIds()
-                    ));
-                }
+				$collection->addAttributeToFilter('main_table.store_id', array(
+					'in' => $role->getAllowedStoreviewIds()
+				));
             }
         }
         $collection->setFlag('permissions_processed', true);
@@ -356,7 +406,8 @@ class Wsu_Storepartitions_Model_Observer {
         }
     }
     public function onCustomerLoadAfter($observer) {
-        if (!$this->_getCurrentRole()->isPermissionsEnabled() || Mage::getStoreConfig('storepartitions/general/showallcustomers')) {
+        if (!$this->_getCurrentRole()->isPermissionsEnabled() || Mage::getStoreConfig('storepartitions/general/showallcustomers') ||
+            Mage::getStoreConfig('customer/account_share/scope') == 0) {
             return;
         }
         $customer = $observer->getCustomer();
@@ -424,6 +475,11 @@ class Wsu_Storepartitions_Model_Observer {
             Mage::throwException($this->_helper->__('Review could not be deleted due to insufficent permissions.'));
         }
     }
+    public function onAdminhtmlCatalogCategorySavePostdispatch($observer){
+        if(Mage::registry('wsu_catalog_catagory_clear_session_data')) {
+            Mage::getSingleton('adminhtml/session')->setCategoryData(array());
+        }
+    }
     public function onAdminhtmlCatalogProductReviewMassDeletePredispatch($observer) {
         if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
             return;
@@ -442,6 +498,13 @@ class Wsu_Storepartitions_Model_Observer {
             $observer->getData('controller_action')->getRequest()->setParam('reviews', $reviewIds);
         }
     }
+	
+    public function updateAttributeValue($storeId, $productId, $data){
+		Mage::getSingleton('catalog/product_action')->updateAttributes(array($productId), $data, $storeId);
+    }
+	
+	
+	
     public function insertAttributeValue($table, $entityTypeId, $attributeId, $toreId, $entityId, $value) {
         $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
         $data       = array(
@@ -453,4 +516,17 @@ class Wsu_Storepartitions_Model_Observer {
         );
         $connection->insert($table, $data);
     }
+    protected function _getCurrentOrder() {
+        $orderId = Mage::app()->getRequest()->has('order_id');
+        if ($orderId) {
+            $order = Mage::getModel('sales/order')->load($orderId);
+            return $order;
+        }
+        $order = Mage::getSingleton('adminhtml/session_quote')->getOrder();
+        if ($order->getId()) {
+            return $order;
+        }
+        return null;
+    }
+	
 }
