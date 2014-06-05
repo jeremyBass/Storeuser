@@ -340,6 +340,14 @@
           </storepartitions>
         </observers>
       </catalog_product_collection_load_before>
+		<catalog_product_validate_before>
+			<observers>
+				<storepartitions>
+					<class>storepartitions/observer</class>
+					<method>onCatalogProductValidateBefore</method>
+				</storepartitions>
+			</observers>
+		</catalog_product_validate_before>
       <catalog_product_save_after>
         <observers>
           <storepartitions>
