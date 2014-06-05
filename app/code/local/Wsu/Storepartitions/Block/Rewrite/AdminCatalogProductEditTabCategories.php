@@ -72,7 +72,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories ext
         }
         return $root;
     }
-    protected function _getSelectedNodes() {
+/*    protected function _getSelectedNodes() {
         if (version_compare(Mage::getVersion(), '1.4.0.0', '>=')) {
             return parent::_getSelectedNodes();
         }
@@ -86,5 +86,5 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories ext
             }
         }
         return $this->_selectedNodes;
-    }
+    }*/
 }
