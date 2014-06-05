@@ -65,25 +65,5 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogProduct extends Mage_Catalog_Mode
 		return $purl;
     }
 	
-	
-    /**
-     * @refactor ?
-     * check if following bug reproduces when commented
-     * 0027984: Admin (allowed manage own products only) can manage all products by direct URL.
-     */
-    //    protected function _afterLoad()
-    //    {
-    //        parent::_afterLoad();
-    //        $controller = Mage::app()->getRequest()->getControllerName();
-    //        if (Mage::helper('storepartitions')->isPermissionsEnabled() &&
-    //            Mage::helper('storepartitions/access')->isAllowManageEntity('product') &&
-    //            Mage::app()->getStore()->isAdmin() &&
-    //            ($this->getCreatedBy() !== Mage::getSingleton('admin/session')->getUser()->getUserId()) &&
-    //            (!in_array($controller, array('sales_order_edit', 'sales_order_create'))))
-    //        {
-    //            $this->unsetData();
-    //        }
-    //
-    //        return $this;
-    //    }
+
 }

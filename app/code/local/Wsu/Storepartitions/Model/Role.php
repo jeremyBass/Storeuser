@@ -238,6 +238,9 @@ class Wsu_Storepartitions_Model_Role {
     }
     public function isAllowedToEditProduct($product) {
         if ($this->isScopeStore()) {
+			if(sizeof($product->getCategoryIds())==0 && Mage::helper('storepartitions')->isShowingProductsWithoutCategories() == 1) {
+                return true;
+            }
             return (bool) array_intersect($this->getAllowedCategoryIds(), $product->getCategoryIds());
         }
         if ($this->isScopeWebsite()) {
@@ -245,7 +248,18 @@ class Wsu_Storepartitions_Model_Role {
         }
         return false;
     }
+	
+    public function isAllowedToEditCategory($category) {
+        if($this->isPermissionsEnabled() && $category->getId() && !in_array($category->getId(), $this->getAllowedCategoryIds())) {
+            return false;
+        }
+        return true;
+    }
+
     public function addAllowedCategoryId($addCategoryIds, $storeId) {
+        if(is_array($this->_allowedCategoryIds)) {
+            $this->_allowedCategoryIds[] = $addCategoryIds;
+        }
         if ($this->isScopeWebsite()) {
             return;
         }

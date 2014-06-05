@@ -75,5 +75,25 @@ ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD CO
 ALTER TABLE `' . $this->getTable('wsu_storepartitions_advancedrole') . '` ADD COLUMN `can_edit_web_sites` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1;
 ');
 
+$installer->updateAttribute('catalog_product', 'created_by', 'is_visible', '1'); 
+$installer->updateAttribute('catalog_product', 'created_by', 'source_model', 'storepartitions/source_admins'); 
+$installer->updateAttribute('catalog_product', 'created_by', 'frontend_label', 'Product owner'); 
+$installer->updateAttribute('catalog_product', 'created_by', 'frontend_input', 'select'); 
+
+$installer->updateAttribute('catalog_product', 'created_by', 'source_model', 'Wsu_Storepartitions_Model_Source_Admins'); 
+
+
+$installer->run($sql = "
+CREATE TABLE IF NOT EXISTS {$this->getTable('wsu_storepartitions_approvedcategories')} (
+  `id` smallint(5) unsigned NOT NULL auto_increment,
+  `category_id` smallint(5) unsigned NOT NULL,
+  `is_approved` smallint(1) unsigned NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+    
+");
+
+
 
 $installer->endSetup(); 
