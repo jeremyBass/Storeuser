@@ -145,6 +145,9 @@
           <approve>
             <table>wsu_storepartitions_approvedproducts</table>
           </approve>
+			<approvecategory>
+				<table>wsu_storepartitions_approvedcategories</table>
+			</approvecategory>
         </entities>
       </storepartitions_mysql4>
       <catalog_resource_eav_mysql4>
