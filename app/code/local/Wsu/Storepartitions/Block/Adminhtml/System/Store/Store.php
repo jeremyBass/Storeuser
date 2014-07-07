@@ -54,7 +54,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
 
 		$role = Mage::getSingleton('storepartitions/role');
 		
-		if( !$role->isPermissionsEnabled() ){
+		if( $role->isPermissionsEnabled() ){
 			$limited = false;
 			if ( !$role->canAddStoreGroups() ) {
 				$this->_removeButton('add_group');
