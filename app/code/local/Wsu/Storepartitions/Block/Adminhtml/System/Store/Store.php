@@ -51,23 +51,26 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
             'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/quickAdd') .'\')',
             'class'     => 'quickadd',
         ));
-		$limited = false;
+
 		$role = Mage::getSingleton('storepartitions/role');
 		
-		if ( !$role->canAddStoreGroups() ) {
-			$this->_removeButton('add_group');
-			$limited = true;
-		}
-		if ( !$role->canAddStoreViews() ) {
-			$this->_removeButton('add_store');
-			$limited = true;
-		}
-		if ( !$role->canAddWebSites() ) {
-			$this->_removeButton('add');
-			$limited = true;
-		}
-		if($limited!=false){
-			$this->_removeButton('quickadd');
+		if( !$role->isPermissionsEnabled() ){
+			$limited = false;
+			if ( !$role->canAddStoreGroups() ) {
+				$this->_removeButton('add_group');
+				$limited = true;
+			}
+			if ( !$role->canAddStoreViews() ) {
+				$this->_removeButton('add_store');
+				$limited = true;
+			}
+			if ( !$role->canAddWebSites() ) {
+				$this->_removeButton('add');
+				$limited = true;
+			}
+			if($limited!=false){
+				$this->_removeButton('quickadd');
+			}
 		}
         return parent::_prepareLayout();
     }
@@ -77,8 +80,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
      *
      * @return string
      */
-    public function getGridHtml()
-    {
+    public function getGridHtml() {
 
 		return $this->getLayout()->createBlock('adminhtml/system_store_tree')->toHtml();
     }
@@ -88,8 +90,7 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
      *
      * @return string
      */
-    public function getAddNewButtonHtml()
-    {
+    public function getAddNewButtonHtml() {
         return join(' ', array(
             $this->getChildHtml('add_new_website'),
             $this->getChildHtml('add_new_group'),
