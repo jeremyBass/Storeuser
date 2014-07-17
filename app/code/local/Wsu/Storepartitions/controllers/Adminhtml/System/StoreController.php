@@ -82,6 +82,15 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 								'content' => $postData['store']['home_layout']
 							));
 						}
+						
+						$map_file='/maps/nginx-mapping.conf';
+						if(file_exists($map_file)){
+							$str=file_get_contents($map_file);
+							$str=str_replace("#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions","    ".$postData['storegroup']['baseurl']." ".$postData['website']['code']."\r#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions",$str);
+							file_put_contents($map_file, $str);
+						}
+						
+						
 						/*
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_color', 'crimson', 'websites', $siteId);
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_tool_bar_color', 'lighter', 'websites', $siteId);
