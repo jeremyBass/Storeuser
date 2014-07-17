@@ -47,7 +47,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		
 		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
-			Mage::getSingleton('adminhtml/session')->addSuccess( Mage::helper('storeutilities')->__('Created the new root category of')." <b>". $postData['root_cat']."</b>" );
+			Mage::getSingleton('adminhtml/session')->addSuccess( $SP_Helper->__('Created the new root category of')." <b>". $postData['root_cat']."</b>" );
 			
 			$siteId = $SU_Helper->make_website(array(
 							'code'=>$postData['website']['code'],
@@ -63,7 +63,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 					$siteId, $newRootCat
 				 );
 				if( $storeGroupId>0 ){
-					Mage::getSingleton('adminhtml/session')->addSuccess( $postData['storegroup']['name']." [".$postData['storegroup']['baseurl']."](id: ${storeGroupId}) ".Mage::helper('storeutilities')->__(' site group was created') );
+					Mage::getSingleton('adminhtml/session')->addSuccess( $postData['storegroup']['name']." [".$postData['storegroup']['baseurl']."](id: ${storeGroupId}) ".$SP_Helper->__(' site group was created') );
 					
 					$storeId = $SU_Helper->make_store( $siteId, $storeGroupId, array(
 								'code'=>$postData['website']['code'],
@@ -71,7 +71,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 								) );
 					if( $storeId>0 ){
 						
-						Mage::getSingleton('adminhtml/session')->addSuccess( Mage::helper('storeutilities')->__('A base store view was created for the new store') );
+						Mage::getSingleton('adminhtml/session')->addSuccess( $SP_Helper->__('A base store view was created for the new store') );
 						
 						if(!empty($postData['store']['home_layout'])){
 							$SU_Helper->createCmsPage($storeId,array(
