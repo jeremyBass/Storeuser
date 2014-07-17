@@ -18,6 +18,9 @@ class Wsu_Storepartitions_Helper_Data extends Mage_Core_Helper_Abstract {
     public function isAllowedDeletePerStoreview() {
         return Mage::getStoreConfig('storepartitions/general/allowdelete');
     }
+    public function shouldMapWebsites() {
+        return Mage::getStoreConfig('storepartitions/general/mapping');
+    }
     /**
      * backward compatibility with Shopping Assistant
      */

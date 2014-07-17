@@ -43,6 +43,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		
 		$cDat = new Mage_Core_Model_Config();
         $SU_Helper = Mage::helper('storeutilities/utilities');
+		$SP_Helper = Mage::helper('storepartitions')l
 		
 		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
@@ -83,15 +84,18 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 							));
 						}
 						
-						$map_file=Mage::getBaseDir().'/maps/nginx-mapping.conf';
-						if(file_exists($map_file)){
+						
+						if($SP_Helper->shouldMapWebsites()){
+							$map_file=Mage::getBaseDir().'/maps/nginx-mapping.conf';
+							if(file_exists($map_file)){
+								file_put_contents($map_file, 'map $http_host $magesite {\r#MAGE_CONTROLLED_MAPS-Storepartitions\r#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions\r}');
+							}
+								
 							$str=file_get_contents($map_file);
 							$str=str_replace("#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions","    ".$postData['storegroup']['baseurl']." ".$postData['website']['code'].";\r#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions",$str);
 							file_put_contents($map_file, $str);
 							Mage::getSingleton('adminhtml/session')->addSuccess( $postData['storegroup']['baseurl']." ".$postData['website']['code']." ".Mage::helper('storeutilities')->__('was added to the nginx-mapping.conf file') );
-				
 						}
-						
 						
 						/*
 						$cDat->saveConfig('wsu_themecontrol_design/spine/spine_color', 'crimson', 'websites', $siteId);
