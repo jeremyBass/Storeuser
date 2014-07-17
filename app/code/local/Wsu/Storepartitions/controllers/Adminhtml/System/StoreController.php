@@ -43,7 +43,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		
 		$cDat = new Mage_Core_Model_Config();
         $SU_Helper = Mage::helper('storeutilities/utilities');
-		$SP_Helper = Mage::helper('storepartitions')l
+		$SP_Helper = Mage::helper('storepartitions');
 		
 		$newRootCat = $SU_Helper->make_category($postData['root_cat']);
 		if($newRootCat>0){
