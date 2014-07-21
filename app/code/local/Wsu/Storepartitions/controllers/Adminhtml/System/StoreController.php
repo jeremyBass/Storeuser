@@ -92,7 +92,7 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 							}
 
 							$str=file_get_contents($map_file);
-							$str=str_replace("#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions","    ".$postData['storegroup']['baseurl']." ".$postData['website']['code'].";\r#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions",$str);
+							$str=str_replace("#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions","    ".$postData['storegroup']['baseurl']." ".$postData['website']['code'].";\n#END_OF_MAGE_CONTROLLED_MAPS-Storepartitions",$str);
 							file_put_contents($map_file, $str);
 							Mage::getSingleton('adminhtml/session')->addSuccess( $postData['storegroup']['baseurl']." ".$postData['website']['code']." ".Mage::helper('storeutilities')->__('was added to the nginx-mapping.conf file') );
 						}
