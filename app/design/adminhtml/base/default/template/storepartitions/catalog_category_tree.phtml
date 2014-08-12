@@ -64,21 +64,28 @@ categoryMove = function(obj){
         pd.push(encodeURIComponent(key), "=", encodeURIComponent(data[key]), "&");
     }
     pd.splice(pd.length-1,1);
-    /**
-     * START BASS CHANGES COMPARING TO ORIGINAL VERSION
-     */
+
+
+
+	WSU.ajaxManager.ajaxManager.addReq("saveComment",{
+		type: 'POST',
+		url: categoryMoveUrl,
+		//dataType: 'json',
+		data: pd.join(""),
+		success: success
+	});
+
+/*
     new Ajax.Request(categoryMoveUrl,
-    /**
-     * FINISH BASS CHANGES COMPARING TO ORIGINAL VERSION
-     */
         {
             method:     'POST',
             parameters: pd.join(""),
             onSuccess : success,
             onFailure : failure
         }
-    );
+    );*/
 }
+
 
 Event.observe(document, 'dom:loaded', function(){
     $('store_switcher').observe('change', function(event)
