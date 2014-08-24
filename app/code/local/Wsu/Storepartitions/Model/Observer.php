@@ -248,11 +248,12 @@ class Wsu_Storepartitions_Model_Observer {
     }
 
     public function onCatalogProductCollectionLoadBefore($observer) {
-        if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
-            return;
-        }
+
         $routeName = Mage::app()->getFrontController()->getRequest()->getRouteName();
         if (false === strpos($routeName, 'adminhtml') && false === strpos($routeName, 'bundle')) {
+            return;
+        }
+        if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
             return;
         }
         $getCurrentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getRoleId();
