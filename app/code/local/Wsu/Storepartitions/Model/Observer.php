@@ -419,6 +419,11 @@ class Wsu_Storepartitions_Model_Observer {
         }
     }
     public function onCmsPageLoadAfter($observer) {
+		$routeName = Mage::app()->getFrontController()->getRequest()->getRouteName();
+        if (false === strpos($routeName, 'adminhtml') && false === strpos($routeName, 'bundle')) {
+            return;
+        }
+		
         if (!$this->_getCurrentRole()->isPermissionsEnabled()) {
             return;
         }
