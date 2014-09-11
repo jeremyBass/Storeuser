@@ -72,19 +72,4 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories ext
         }
         return $root;
     }
-/*    protected function _getSelectedNodes() {
-        if (version_compare(Mage::getVersion(), '1.4.0.0', '>=')) {
-            return parent::_getSelectedNodes();
-        }
-        if ($this->_selectedNodes === null) {
-            $this->_selectedNodes = array();
-            $root                 = $this->getRoot();
-            foreach ($this->getCategoryIds() as $categoryId) {
-                if ($root) {
-                    $this->_selectedNodes[] = $this->getRoot()->getTree()->getNodeById($categoryId);
-                }
-            }
-        }
-        return $this->_selectedNodes;
-    }*/
 }

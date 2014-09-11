@@ -1,18 +1,13 @@
 <?php
-class Wsu_Storepartitions_Block_Adminhtml_Store_Switcher extends Mage_Adminhtml_Block_Catalog_Category_Tree // Mage_Adminhtml_Block_Store_Switcher
-    {
-    /**
-     * @var array
-     */
+class Wsu_Storepartitions_Block_Adminhtml_Store_Switcher extends Mage_Adminhtml_Block_Catalog_Category_Tree {
+
     protected $_storeIds;
     protected $_storeCategories = null;
     protected $_selectedNodes = null;
     private $_rootNodeTreesStorage = array();
     private $_storeViewStores = array();
-    /**
-     * @var bool
-     */
     protected $_hasDefaultOption = false;
+	
     public function __construct() {
         parent::__construct();
         $this->setTemplate('storepartitions/store_switcher.phtml');

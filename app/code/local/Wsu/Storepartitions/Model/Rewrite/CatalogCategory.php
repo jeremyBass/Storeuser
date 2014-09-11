@@ -30,16 +30,16 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogCategory extends Mage_Catalog_Mod
 
 
         if ($role->isPermissionsEnabled() && Mage::getStoreConfig('storepartitions/sucategories/enable')&& !$this->getId()){
-            $this->setAitCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_AWAITING);
+            $this->setSpCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_AWAITING);
         }
 
         if(!$role->isPermissionsEnabled() && $this->getId() && Mage::getModel('storepartitions/approvecategory')->isCategoryAwaitingApproving($this->getId())){
             switch($generalSection['is_active']){
                 case '0':
-                    $this->setAitCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_NOT_APPROVED);
+                    $this->setSpCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_NOT_APPROVED);
                     break;                
                 case '1':
-                    $this->setAitCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_APPROVED);
+                    $this->setSpCategoryApproveStatus(Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_APPROVED);
                     break;
                 default:                    
                     break;
@@ -64,11 +64,11 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogCategory extends Mage_Catalog_Mod
 
     protected function _afterSave() {
         if ($this->getData('entity_id') && 
-            ($this->getAitCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_AWAITING || 
-             $this->getAitCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_NOT_APPROVED || 
-             $this->getAitCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_APPROVED
+            ($this->getSpCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_AWAITING || 
+             $this->getSpCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_NOT_APPROVED || 
+             $this->getSpCategoryApproveStatus() === Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_APPROVED
             )) {
-            switch($this->getAitCategoryApproveStatus()){
+            switch($this->getSpCategoryApproveStatus()){
                 case Wsu_Storepartitions_Model_Approvecategory::WSU_CATEGORY_STATUS_NOT_APPROVED:
                     Mage::getModel('storepartitions/approvecategory')->disapprove($this->getData('entity_id'));
                     break;
@@ -83,7 +83,7 @@ class Wsu_Storepartitions_Model_Rewrite_CatalogCategory extends Mage_Catalog_Mod
                     break;            
             }
 
-            $this->setAitCategoryApproveStatus('');
+            $this->setSpCategoryApproveStatus('');
         }
 
         $role = Mage::getSingleton('storepartitions/role');

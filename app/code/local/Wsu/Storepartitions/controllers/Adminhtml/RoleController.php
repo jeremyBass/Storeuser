@@ -8,7 +8,7 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
         $ruleModel             = Mage::getModel("admin/rules");
         $loadRuleCollection    = $ruleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
         //echo "<pre>"; print_r($loadRuleCollection->getSize()); exit;
-        $loadAitRoleCollection = $wsuRoleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
+        $loadSpRoleCollection = $wsuRoleModel->getCollection()->addFilter('role_id', $this->getRequest()->getParam('rid'));
         try {
             $roleModel->setId(null)->setName('Copy of ' . $loadRole->getRoleName())->setPid($loadRole->getParentId())->setTreeLevel($loadRole->getTreeLevel())->setType($loadRole->getType())->setUserId($loadRole->getUserId())->save();
             //            foreach (explode(",",$roleModel->getUserId()) as $nRuid) {
@@ -18,21 +18,21 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
                 $ruleModel->setData($rule->getData())->setRuleId(null)->setRoleId($roleModel->getId())->save();
             }
             $newRoleId = $roleModel->getRoleId();
-            foreach ($loadAitRoleCollection as $loadAitRole) {
+            foreach ($loadSpRoleCollection as $loadSpRole) {
                 $wsuRoleModel->setId(null)
 							->setRoleId($newRoleId)
-							->setWebsiteId($loadAitRole->getWebsiteId())
-							->setStoreId($loadAitRole->getStoreId())
-							->setStoreviewIds($loadAitRole->getStoreviewIds())
-							->setCategoryIds($loadAitRole->getCategoryIds())
-							->setCanEditGlobalAttr($loadAitRole->getCanEditGlobalAttr())
-							->setCanEditOwnProductsOnly($loadAitRole->getCanEditOwnProductsOnly())
-							->setCanAddStoreViews($loadAitRole->getCanAddStoreViews())
-							->setCanEditStoreViews($loadAitRole->getCanEditStoreViews())
-							->setCanAddStoreGroups($loadAitRole->getCanAddStoreGroups())
-							->setCanEditStoreGroups($loadAitRole->getCanEditStoreGroups())
-							->setCanAddWebSites($loadAitRole->getCanAddWebSites())
-							->setCanEditWebSites($loadAitRole->getCanEditWebSites())
+							->setWebsiteId($loadSpRole->getWebsiteId())
+							->setStoreId($loadSpRole->getStoreId())
+							->setStoreviewIds($loadSpRole->getStoreviewIds())
+							->setCategoryIds($loadSpRole->getCategoryIds())
+							->setCanEditGlobalAttr($loadSpRole->getCanEditGlobalAttr())
+							->setCanEditOwnProductsOnly($loadSpRole->getCanEditOwnProductsOnly())
+							->setCanAddStoreViews($loadSpRole->getCanAddStoreViews())
+							->setCanEditStoreViews($loadSpRole->getCanEditStoreViews())
+							->setCanAddStoreGroups($loadSpRole->getCanAddStoreGroups())
+							->setCanEditStoreGroups($loadSpRole->getCanEditStoreGroups())
+							->setCanAddWebSites($loadSpRole->getCanAddWebSites())
+							->setCanEditWebSites($loadSpRole->getCanEditWebSites())
 							->save();
             }
         }

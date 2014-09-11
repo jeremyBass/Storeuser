@@ -13,42 +13,41 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTabAttributes extend
         $catId = Mage::app()->getRequest()->getParam('id');
 
         if(isset($catId)){
-            if ($role->isPermissionsEnabled()){
+            if($role->isPermissionsEnabled()){
                 if(Mage::getModel('storepartitions/approvecategory')->isCategoryApproved($catId)){
                     //do nothing
                 }
                 else{
                     foreach($elements as $elem){
                         if($elem->getName() === 'is_active'){
-                            $newValues = $this->getAitAllOptions();
+                            $newValues = $this->getSpAllOptions();
                             $elem->setValues($newValues);                            
                         }
                     }
                 }
-            } else{
+            }else{
                 if(Mage::getModel('storepartitions/approvecategory')->isCategoryApproved($catId)){
                     //do nothing
-                } else{
+                }else{
                     foreach($elements as $elem){
                         if($elem->getName() === 'is_active'){
                             $oldValues = $elem->getValues();
-                            $newValues = $this->getAitAllOptionsEmpty();
+                            $newValues = $this->getSpAllOptionsEmpty();
                             $values = array_merge($oldValues, $newValues);
                             $elem->setValues($values);                          
                         }
                     }
                 }                
             }
-        } else{
+        }else{
             if ($role->isPermissionsEnabled()){
                 foreach($elements as $elem){
                     if($elem->getName() === 'is_active'){                        
-                        $newValues = $this->getAitAllOptions();
+                        $newValues = $this->getSpAllOptions();
                         $elem->setValues($newValues);
                     }
                 }
-            }
-            else{
+            }else{
                 //do nothing
             }
         }       
@@ -59,7 +58,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTabAttributes extend
      *
      * @return array
      */
-    public function getAitAllOptions() {        
+    public function getSPAllOptions() {        
             $this->_options = array(
                 array(
                     'label' => Mage::helper('storepartitions')->__('AWAITING APPROVE'),
@@ -75,7 +74,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTabAttributes extend
      *
      * @return array
      */
-    public function getAitAllOptionsEmpty() {        
+    public function getSpAllOptionsEmpty() {        
             $this->_options = array(
                 array(
                     'label' => Mage::helper('catalog')->__('-- Please Select --'),    
