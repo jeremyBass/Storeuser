@@ -184,12 +184,8 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canEditGlobalAttributes;
     }
-    public function canEditOwnProductsOnly() {
-        if (null == $this->_canEditOwnProductsOnly) {
-            $this->_canEditOwnProductsOnly = (bool) $this->_getRecordCollection()->getFirstItem()->getCanEditOwnProductsOnly();
-        }
-        return $this->_canEditOwnProductsOnly;
-    }
+
+	
     public function canAddStoreViews() {
         if (null == $this->_canAddStoreViews) {
             $this->_canAddStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getCanAddStoreViews();
@@ -228,6 +224,20 @@ class Wsu_Storepartitions_Model_Role {
     }	
 		
     // product permissions
+    public function canCreateProducts(){
+        if (is_null($this->_canCreateProducts)){
+            $this->_canCreateProducts = (bool)$this->_getRecordCollection()
+                ->getFirstItem()
+                ->getCanCreateProducts();
+        }
+        return $this->_canCreateProducts;
+    }
+    public function canEditOwnProductsOnly() {
+        if (null == $this->_canEditOwnProductsOnly) {
+            $this->_canEditOwnProductsOnly = (bool) $this->_getRecordCollection()->getFirstItem()->getCanEditOwnProductsOnly();
+        }
+        return $this->_canEditOwnProductsOnly;
+    }
     public function isOwnProduct($product) {
         $productOwnerId = $product->getCreatedBy();
         $adminId        = Mage::getSingleton('admin/session')->getUser()->getUserId();

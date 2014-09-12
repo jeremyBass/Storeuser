@@ -4,8 +4,8 @@ class Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttribu
         $result = parent::_getAdditionalElementHtml($element);
         if ($element && $element->getEntityAttribute() && $element->getEntityAttribute()->isScopeGlobal()) {
             $role = Mage::getSingleton('storepartitions/role');
-            if ($role->isPermissionsEnabled() && !$role->canEditGlobalAttributes()) {
-                $result = str_replace('<input type="checkbox"', '<input type="checkbox" disabled="disabled"', $result);
+            if ($role->isPermissionsEnabled() && !$role->canEditGlobalAttributes() && $this->getRequest()->getActionName() != 'new'){
+                $result = str_replace('<input type="checkbox"', '<input type="checkbox" disabled ', $result);
             }
         }
         return $result;

@@ -21,13 +21,31 @@ class Wsu_Storepartitions_Helper_Data extends Mage_Core_Helper_Abstract {
     public function shouldMapWebsites() {
         return Mage::getStoreConfig('storepartitions/general/mapping');
     }
-    /**
-     * backward compatibility with Shopping Assistant
-     */
     public function getAllowedCategories() {
         return Mage::getSingleton('storepartitions/role')->getAllowedCategoryIds();
     }
 	public function isQuickCreate() {
         return Mage::app()->getRequest()->getActionName() == 'quickCreate' ? true : false;
+    }
+    public function getProductTabs(){
+        return array(
+            'inventory' => 'Inventory',
+            'websites' => 'Websites',
+            'categories' => 'Categories',
+            'related' => 'Related',
+            'upsell' => 'Upsell',
+            'crosssell' => 'Crosssell',
+            'productalert' => 'Product Alerts',
+            'reviews' => 'Product Reviews', 
+            'tags' => 'Product Tags',
+            'customers_tags' => 'Customers Tagged Product',
+            'customer_options' => 'Custom Options');
+    }
+    
+    public function getAttributePermission(){
+        $user = Mage::getSingleton('admin/session')->getUser();
+
+        $spAttributeModel = Mage::getSingleton('storepartitions/editor_attribute');
+        return $spAttributeModel->getAttributePermissionByRole($user->getRole()->getRoleId());
     }
 }

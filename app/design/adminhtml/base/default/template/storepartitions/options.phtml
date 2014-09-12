@@ -2,7 +2,7 @@
 <h3>Allow users to:</h3>
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canEditGlobalAttributes() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canEditGlobalAttributes() ? 'checked' : '' ?>
            name="allowupdateglobalattrs"
            id="allowupdateglobalattrs"
            value="1" />&nbsp;
@@ -10,7 +10,7 @@
 </div>
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canEditOwnProductsOnly() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canEditOwnProductsOnly() ? 'checked' : '' ?>
            name="caneditownproductsonly"
            id="caneditownproductsonly"
            value="1" />&nbsp;
@@ -19,7 +19,19 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canAddStoreViews() ? 'checked="checked"' : '' ?>
+        <?php echo $this->manageOrdersOwnProductsOnly() ? 'checked' : '' ?>
+           name="manage_orders_own_products_only"
+           id="manage_orders_own_products_only"
+           value="1" />&nbsp;
+    <label for="manage_orders_own_products_only">
+        <b><?php echo $this->__('Allow manage orders with own products only') ?></b>
+    </label>
+</div>
+
+
+<div style="background-color: whiteSmoke;">
+    <input type="checkbox"
+        <?php echo $this->canAddStoreViews() ? 'checked' : '' ?>
            name="canaddstoreviews"
            id="canaddstoreviews"
            value="1" />&nbsp;
@@ -28,7 +40,7 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canEditStoreViews() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canEditStoreViews() ? 'checked' : '' ?>
            name="caneditstoreviews"
            id="caneditstoreviews"
            value="1" />&nbsp;
@@ -37,7 +49,7 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canAddStoreGroups() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canAddStoreGroups() ? 'checked' : '' ?>
            name="canaddstoregroups"
            id="canaddstoregroups"
            value="1" />&nbsp;
@@ -46,7 +58,7 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canEditStoreGroups() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canEditStoreGroups() ? 'checked' : '' ?>
            name="caneditstoregroups"
            id="caneditstoregroups"
            value="1" />&nbsp;
@@ -56,7 +68,7 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canAddWebSites() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canAddWebSites() ? 'checked' : '' ?>
            name="canaddwebsites"
            id="canaddwebsites"
            value="1" />&nbsp;
@@ -66,7 +78,7 @@
 
 <div style="background-color: whiteSmoke;">
     <input type="checkbox"
-        <?php echo $this->canEditWebSites() ? 'checked="checked"' : '' ?>
+        <?php echo $this->canEditWebSites() ? 'checked' : '' ?>
            name="caneditwebsites"
            id="caneditwebsites"
            value="1" />&nbsp;

@@ -2,7 +2,7 @@
 class Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditTabInventory extends Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Inventory {
     protected function _toHtml() {
         $role = Mage::getSingleton('storepartitions/role');
-        if (!$role->isPermissionsEnabled() || $role->canEditGlobalAttributes()) {
+        if (!$role->isPermissionsEnabled() || $role->canEditGlobalAttributes() || $this->getRequest()->getActionName() == 'new') {
             return parent::_toHtml();
         }
         return parent::_toHtml() . '

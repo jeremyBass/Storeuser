@@ -7,6 +7,11 @@ class Wsu_Storepartitions_Adminhtml_CatalogProductController extends Mage_Adminh
         $owner      = (int)$this->getRequest()->getParam('created_by');
 
         try {
+			if (!Mage::getModel('catalog/product')->isProductsHasSku($productIds)) {
+                throw new Mage_Core_Exception(
+                    $this->__('In order to perform changes all products must have skus.')
+                );
+            }
             Mage::getSingleton('catalog/product_action')
                 ->updateAttributes($productIds, array('created_by' => $owner), $storeId);
 

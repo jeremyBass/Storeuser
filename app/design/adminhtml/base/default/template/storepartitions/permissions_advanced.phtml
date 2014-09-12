@@ -1,3 +1,22 @@
+<script type="text/javascript">
+    Validation.add('validate-one-required-by-name-sp', 'Please select one of the options.', function(v,elm){
+                var inputs = $$('input[name*="' + elm.name.replace(/([\\"])/g, '\\$1').replace(/[0-9\[\]]/g,'') + '"]');
+                var error = 1;
+                for(var i=0;i<inputs.length;i++) {
+                    if((inputs[i].type == 'checkbox' || inputs[i].type == 'radio') && inputs[i].checked == true) {
+                        error = 0;
+                    }
+                    if(Validation.isOnChange && (inputs[i].type == 'checkbox' || inputs[i].type == 'radio')) {
+                        Validation.reset(inputs[i]);
+                    }
+                }
+                if( error == 0 ) {
+                    return true;
+                } else {
+                    return false;
+                }
+    });
+</script>
 <div class="entry-edit">
     <div class="entry-edit-head">
         <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('storepartitions')->__('Advanced Permissions') ?></h4>
@@ -35,6 +54,36 @@
 </div>
 
 <script type="text/javascript">
+
+function disableSpTabs(){
+    var tabEditor = $('role_info_tabs_product_editor');
+    var tabCreate = $('role_info_tabs_product_create');
+
+    tabEditor.stopObserving('click',role_info_tabsJsTabs.tabOnClick);
+    tabEditor.stopObserving('click', onclickProductEditorTab);
+    tabEditor.addClassName('sphide');
+
+    tabCreate.stopObserving('click',role_info_tabsJsTabs.tabOnClick);
+    tabCreate.addClassName('sphide');
+
+}
+function enableSpTabs(){
+    var tabEditor = $('role_info_tabs_product_editor');
+    var tabCreate = $('role_info_tabs_product_create');
+
+    if(tabEditor.hasClassName('sphide'))
+    {
+        tabEditor.removeClassName('sphide');
+        Event.observe(tabEditor,'click',role_info_tabsJsTabs.tabOnClick);
+        tabEditor.observe('click', onclickProductEditorTab);
+    }
+
+    if(tabCreate.hasClassName('sphide'))
+    {
+        tabCreate.removeClassName('sphide');
+        Event.observe(tabCreate,'click',role_info_tabsJsTabs.tabOnClick);
+    }
+}
 storepartitionsSetScope = function(scope)
 {
     switch (scope)
@@ -42,94 +91,104 @@ storepartitionsSetScope = function(scope)
         case 'store':
         $('storepartitions_sett_block_websites').hide();
         $('storepartitions_sett_block_stores').show();
+        $$('input[name*="store_switcher"]').each(function(checkbox){ checkbox.addClassName('validate-one-required-by-name-sp');});
         $('storepartitions_sett_block_options').show();
 		$('storepartitions_disable').disable();
+        enableSpTabs();
         break;
         
         case 'website':
         $('storepartitions_sett_block_stores').hide();
+        $$('input[name*="store_switcher"]').each(function(checkbox){ checkbox.removeClassName('validate-one-required-by-name-sp');});
         $('storepartitions_sett_block_websites').show();
         $('storepartitions_sett_block_options').show();
 		$('storepartitions_disable').disable();
+        enableSpTabs();
         break;
         
         case 'disabled':
         $('storepartitions_sett_block_stores').hide();
+        $$('input[name*="store_switcher"]').each(function(checkbox){ checkbox.removeClassName('validate-one-required-by-name-sp');});
         $('storepartitions_sett_block_websites').hide();
         $('storepartitions_sett_block_options').hide();
 		$('storepartitions_disable').enable();
+        disableSpTabs();
         break;
     }
 }
-storepartitionsSetScope('<?php echo $this->getScope(); ?>');
+document.observe("dom:loaded", function() {
+    storepartitionsSetScope('<?php echo $this->getScope(); ?>');
 
-roleForm.submit = function() 
-{
-    if (!($('access_scope_disabled').checked))
+    roleForm.submit = function()
     {
-        var selected = false;
-        var storesSelected = [];
-        var categoriesSelected = [];
-        
-        if ($('access_scope_store').checked)
+        if (!($('access_scope_disabled').checked))
         {
-            $$('div.storeview-select').each(function(store)
+            var selected = false;
+            var storesSelected = [];
+            var categoriesSelected = [];
+
+            if ($('access_scope_store').checked)
             {
-                var storeSelected = false;
-                store.select('input[type="checkbox"]').each(function(checkbox)
+                $$('div.storeview-select').each(function(store)
                 {
-                    selected = (selected || checkbox.checked);
-                    storeSelected = (storeSelected || checkbox.checked);
+                    var storeSelected = false;
+                    store.select('input[type="checkbox"]').each(function(checkbox)
+                    {
+                        selected = (selected || checkbox.checked);
+                        storeSelected = (storeSelected || checkbox.checked);
+                    });
+                    storesSelected[storesSelected.length] = storeSelected;
                 });
-                storesSelected[storesSelected.length] = storeSelected;
-            });
 
-            $$('div.store-categories-tree').each(function(tree)
-            {
-                var storeCategoriesSelected = false;
-                tree.select('input[type="checkbox"]').each(function(checkbox)
+                $$('div.store-categories-tree').each(function(tree)
                 {
-                    storeCategoriesSelected = (storeCategoriesSelected || checkbox.checked);
+                    var storeCategoriesSelected = false;
+                    tree.select('input[type="checkbox"]').each(function(checkbox)
+                    {
+                        storeCategoriesSelected = (storeCategoriesSelected || checkbox.checked);
+                    });
+                    categoriesSelected[categoriesSelected.length] = storeCategoriesSelected;
                 });
-                categoriesSelected[categoriesSelected.length] = storeCategoriesSelected;
-            });
-        }
-
-        if ($('access_scope_website').checked)
-        {
-            selected = Boolean($F('website_switcher').length);
-        }
-        
-        if (!selected)
-        {
-            if (confirm('<?php echo Mage::helper('storepartitions')->__('No store-views or websites are chosen for the Role. If you proceed the advanced permissions settings will be disabled for the Role. Are you sure?') ?>'))
-            {
-                $('access_scope_disabled').checked = 'checked';
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (selected && $('access_scope_store').checked)
-        {
-            var allow = true;
-            for (var i = 0; i < storesSelected.length; i++)
-            {
-                allow = (allow && (!storesSelected[i] || categoriesSelected[i]));
             }
 
-            if (!allow)
+            if ($('access_scope_website').checked)
             {
-                alert('<?php echo Mage::helper('storepartitions')->jsQuoteEscape(Mage::helper('storepartitions')->__('Please, assign at least one category for each checked store.')) ?>');
-                return false;
+                selected = Boolean($F('website_switcher').length);
             }
+
+            if (!selected)
+            {
+                if (confirm('<?php echo Mage::helper('storepartitions')->__('No store-views or websites are chosen for the Role. If you proceed the advanced permissions settings will be disabled for the Role. Are you sure?') ?>'))
+                {
+                    $('access_scope_disabled').checked = 'checked';
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (selected && $('access_scope_store').checked)
+            {
+                var allow = true;
+                for (var i = 0; i < storesSelected.length; i++)
+                {
+                    allow = (allow && (!storesSelected[i] || categoriesSelected[i]));
+                }
+
+                if (!allow)
+                {
+                    alert('<?php echo Mage::helper('storepartitions')->jsQuoteEscape(Mage::helper('storepartitions')->__('Please, assign at least one category for each checked store.')) ?>');
+                    return false;
+                }
+            }
+        }
+
+        //$('is_allow_ids').value = checkBoxesEnable.toS;
+        //$('is_disable_ids').value = checkBoxesDisable.toJSON();
+        if (this.validator.validate())
+        {
+            this._submit();
         }
     }
-
-    if (this.validator.validate())
-    {
-        this._submit();
-    }
-}
+});
 </script>

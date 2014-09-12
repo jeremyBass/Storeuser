@@ -3,11 +3,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartProductGrid extends M
     protected function _prepareCollection() {
         $role       = Mage::getSingleton('storepartitions/role');
         $collection = Mage::getResourceModel('reports/quote_collection');
-        if (version_compare(Mage::getVersion(), '1.6.0.0', '<')) {
-            $collection->prepareForProductsInCarts()->setSelectCountSqlType(Mage_Reports_Model_Mysql4_Quote_Collection::SELECT_COUNT_SQL_TYPE_CART);
-        } else {
-            $collection->prepareForProductsInCarts()->setSelectCountSqlType(Mage_Reports_Model_Resource_Quote_Collection::SELECT_COUNT_SQL_TYPE_CART);
-        }
+        $collection->prepareForProductsInCarts()->setSelectCountSqlType(Mage_Reports_Model_Resource_Quote_Collection::SELECT_COUNT_SQL_TYPE_CART);
         if ($role->isPermissionsEnabled()) {
             if (!Mage::helper('storepartitions')->isShowingAllProducts()) {
                 if ($role->isScopeStore()) {

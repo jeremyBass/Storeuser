@@ -4,7 +4,7 @@ class Wsu_Storepartitions_Block_Rewrite_DownloadableAdminhtmlCatalogProductEditT
         $html = parent::getPurchasedSeparatelySelect();
         $role = Mage::getSingleton('storepartitions/role');
         if (!Mage::app()->isSingleStoreMode() && $role->isPermissionsEnabled() && !$role->canEditGlobalAttributes()) {
-            $html = str_replace('<select', '<select disabled="disabled"', $html);
+            $html = str_replace('<select', '<select disabled ', $html);
         }
         return $html;
     }

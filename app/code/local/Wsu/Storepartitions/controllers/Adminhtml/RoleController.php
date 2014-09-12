@@ -35,6 +35,9 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
 							->setCanEditWebSites($loadSpRole->getCanEditWebSites())
 							->save();
             }
+            Mage::getSingleton('storepartitions/editor_attribute')->getCollection()->duplicateAttributePermissions($this->getRequest()->getParam('rid'), $newRoleId);
+            Mage::getSingleton('storepartitions/editor_type')->getCollection()->duplicateProductTypePermissions($this->getRequest()->getParam('rid'), $newRoleId);
+            Mage::getSingleton('storepartitions/editor_tab')->getCollection()->duplicateProductTabPermissions($this->getRequest()->getParam('rid'), $newRoleId);
         }
         catch (Exception $e) {
             $this->_getSession()->addError($this->__("Role %s wasn't duplicated. %s", $roleName, $e->getMessage()));
@@ -43,16 +46,5 @@ class Wsu_Storepartitions_Adminhtml_RoleController extends Mage_Adminhtml_Contro
         $this->_redirect('adminhtml/permissions_role/index');
         return $this;
     }
-    //    protected function _addUserToRole($userId, $roleId)
-    //    {
-    //        $user = Mage::getModel("admin/user")->load($userId);
-    //        $user->setRoleId($roleId)->setUserId($userId);
-    //
-    //        if( $user->roleUserExists() === true ) {
-    //            return false;
-    //        } else {
-    //            $user->add();
-    //            return true;
-    //        }
-    //    }
+
 }

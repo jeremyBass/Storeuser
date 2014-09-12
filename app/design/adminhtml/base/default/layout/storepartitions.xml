@@ -10,4 +10,13 @@
       <block name="category.tree.storepartitionsprem" type="adminhtml/catalog_category_tree" template="storepartitions/catalog_category_tree.phtml" after="-" />
     </reference>
   </adminhtml_catalog_category_edit>
+    <adminhtml_permissions_role_editrole>
+        <reference name="head">
+            <action method="addCss"><name>storepartitions/sppermissions.css</name></action>
+            <action method="addJs"><script>wsu/storepartitions/main.js</script></action>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" name="adminhtml.permissions.editroles.attribute" template="storepartitions/product/editor/grid_js.phtml"/>
+        </reference>
+    </adminhtml_permissions_role_editrole>
 </layout>

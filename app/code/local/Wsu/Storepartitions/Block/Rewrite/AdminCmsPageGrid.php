@@ -6,9 +6,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminCmsPageGrid extends Mage_Adminhtml_
         $collection->setFirstStoreFlag(true);
         $role = Mage::getSingleton('storepartitions/role');
         if ($role->isPermissionsEnabled()) {
-            $collection->getSelect()->join(array(
-                'store_table_permissions' => $collection->getTable('cms/page_store')
-            ), 'main_table.page_id = store_table_permissions.page_id', array())->where('store_table_permissions.store_id in (?)', $role->getAllowedStoreviewIds())->group('main_table.page_id');
+            $collection->addStoreFilter($role->getAllowedStoreviewIds());
         }
         $this->setCollection($collection);
         return Mage_Adminhtml_Block_Widget_Grid::_prepareCollection();

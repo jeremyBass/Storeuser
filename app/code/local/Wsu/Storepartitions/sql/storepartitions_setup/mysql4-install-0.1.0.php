@@ -16,6 +16,7 @@ $installer->run("
 		`storeview_ids` text NOT NULL,
 		`category_ids` text NOT NULL,
 		`can_edit_global_attr` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+		`can_create_products` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		`can_edit_own_products_only` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		`can_add_store_views` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		`can_edit_store_views` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
@@ -23,6 +24,7 @@ $installer->run("
 		`can_edit_store_groups` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		`can_add_web_sites` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		`can_edit_web_sites` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+		`manage_orders_own_products_only` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 		PRIMARY KEY  (`advancedrole_id`),
 		UNIQUE KEY `role_id` (`role_id`),
 		KEY `store_id` (`store_id`)
@@ -63,6 +65,48 @@ $installer->run("
 ");
 
 
+$table_editor_attribute = $installer->getTable('wsu_storepartitions_editor_attribute');
+$installer->run($sql = "
+DROP TABLE IF EXISTS `{$table_editor_attribute}`;
+CREATE TABLE IF NOT EXISTS {$table_editor_attribute} (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned  NOT NULL,
+  `attribute_id` int(11) NOT NULL,
+  `is_allow` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FC_WSU_SP_EDITOR_ATTRIBUTE_ROLE_ID` FOREIGN KEY (`role_id`) REFERENCES {$this->getTable('admin/role')} (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `role_id` (`role_id`,`attribute_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci COMMENT='editor attribute';
+    
+");
+
+$table_editor_tab = $installer->getTable('wsu_storepartitions_editor_tab');
+$installer->run($sql = "
+DROP TABLE IF EXISTS `{$table_editor_tab}`;
+CREATE TABLE IF NOT EXISTS {$table_editor_tab} (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned  NOT NULL,
+  `tab_code` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FC_WSU_SP_EDITOR_TAB_ROLE_ID` FOREIGN KEY (`role_id`) REFERENCES {$this->getTable('admin/role')} (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci COMMENT='editor tab';
+    
+");
+
+$table_editor_type = $installer->getTable('wsu_storepartitions_editor_type');
+$installer->run($sql = "
+DROP TABLE IF EXISTS `{$table_editor_type}`;
+CREATE TABLE IF NOT EXISTS {$table_editor_type} (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned  NOT NULL,
+  `type` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FC_WSU_SP_EDITOR_TYPE_ROLE_ID` FOREIGN KEY (`role_id`) REFERENCES {$this->getTable('admin/role')} (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci COMMENT='editor type';
+");
+
 $RoleCollection = Mage::getModel('storepartitions/advancedrole')->getCollection();
 foreach ($RoleCollection as $Role) {
     if ($Role->getStoreId()){
@@ -82,6 +126,6 @@ $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'is_visible'
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'source_model', 'storepartitions/source_admins'); 
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'frontend_label', 'Product owner'); 
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'frontend_input', 'select'); 
-$catalogInstaller->updateAttribute('catalog_product', 'created_by', 'source_model', 'Wsu_Storepartitions_Model_Source_Admins'); 
+$catalogInstaller->updateAttribute('catalog_product', 'created_by', 'source_model', 'Wsu_Storepartitions_Model_Source_Admins');
 
 $installer->endSetup(); 

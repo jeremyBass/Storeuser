@@ -1,4 +1,7 @@
 <?php
+/*
+ * @refactor tryy to unsplit the front on option
+ */
 require_once 'Mage/Checkout/controllers/CartController.php'; //correct this!!!
 class Wsu_Storepartitions_CartController extends Mage_Checkout_CartController {
     /**

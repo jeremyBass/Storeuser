@@ -148,6 +148,15 @@
 					<approvecategory>
 						<table>wsu_storepartitions_approvedcategories</table>
 					</approvecategory>
+                    <editor_attribute>
+                        <table>wsu_storepartitions_editor_attribute</table>
+                    </editor_attribute>
+                    <editor_tab>
+                        <table>wsu_storepartitions_editor_tab</table>
+                    </editor_tab>
+                    <editor_type>
+                        <table>wsu_storepartitions_editor_type</table>
+                    </editor_type>
 				</entities>
 			</storepartitions_mysql4>
 			<catalog_resource_eav_mysql4>
@@ -167,6 +176,8 @@
 				<rewrite>
 					<system_store>Wsu_Storepartitions_Model_Rewrite_AdminSystemStore</system_store>
 					<sales_order_create>Wsu_Storepartitions_Model_Rewrite_AdminSalesOrderCreate</sales_order_create>
+					<config_data>Wsu_Storepartitions_Model_Rewrite_AdminhtmlConfigData</config_data>
+					<system_config_source_website>Wsu_Storepartitions_Model_Rewrite_AdminSystemConfigSourceWebsite</system_config_source_website>
 				</rewrite>
 			</adminhtml>
 			<core_mysql4>
@@ -209,40 +220,63 @@
 					<!-- Sets up the quick add store and such -->
 					<system_store_quickadd>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd</system_store_quickadd>
 					<system_store_quickadd_form>Wsu_Storepartitions_Block_Adminhtml_System_Store_Quickadd_Form</system_store_quickadd_form>
+					
 					<system_store_tree>Wsu_Storepartitions_Block_Adminhtml_System_Store_Tree</system_store_tree>
 					<system_store_store>Wsu_Storepartitions_Block_Adminhtml_System_Store_Store</system_store_store>
+					
 					<system_config_switcher>Wsu_Storepartitions_Block_Rewrite_AdminSystemConfigSwitcher</system_config_switcher>
+					
 					<permissions_editroles>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsEditroles</permissions_editroles>
 					<permissions_buttons>Wsu_Storepartitions_Block_Rewrite_AdminPermissionsButtons</permissions_buttons>
+					
+					<catalog_form_renderer_attribute_urlkey>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererAttributeUrlkey</catalog_form_renderer_attribute_urlkey>
+					<catalog_form_renderer_fieldset_element>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererFieldsetElement</catalog_form_renderer_fieldset_element>
+					
 					<catalog_category_tab_attributes>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTabAttributes</catalog_category_tab_attributes>
-					<catalog_product_edit_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabWebsites</catalog_product_edit_tab_websites>
-					<catalog_product_edit_tab_categories>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories</catalog_product_edit_tab_categories>
+					<catalog_category_widget_chooser>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryWidgetChooser</catalog_category_widget_chooser>
 					<catalog_category_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryEditForm</catalog_category_edit_form>
 					<catalog_category_tree>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryTree</catalog_category_tree>
+					
+					
 					<catalog_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductGrid</catalog_product_grid>
+					<catalog_product_edit_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabWebsites</catalog_product_edit_tab_websites>
+					<catalog_product_edit_tab_categories>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabCategories</catalog_product_edit_tab_categories>
+					<catalog_product_edit_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditTabInventory</catalog_product_edit_tab_inventory>
+					<catalog_product_edit_tab_settings>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditTabSettings</catalog_product_edit_tab_settings>
+
 					<catalog_product_edit_action_attribute_tab_websites>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductEditActionAttributeTabWebsites</catalog_product_edit_action_attribute_tab_websites>
-					<catalog_form_renderer_fieldset_element>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererFieldsetElement</catalog_form_renderer_fieldset_element>
 					<catalog_product_edit_action_attribute_tab_attributes>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabAttributes</catalog_product_edit_action_attribute_tab_attributes>
 					<catalog_product_edit_action_attribute_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditActionAttributeTabInventory</catalog_product_edit_action_attribute_tab_inventory>
-					<catalog_form_renderer_attribute_urlkey>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererAttributeUrlkey</catalog_form_renderer_attribute_urlkey>
-					<catalog_product_edit_tab_inventory>Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogProductEditTabInventory</catalog_product_edit_tab_inventory>
+					
+
+					
 					<catalog_product_helper_form_gallery>Wsu_Storepartitions_Block_Rewrite_AdminCatalogProductHelperFormGallery</catalog_product_helper_form_gallery>
-					<catalog_category_widget_chooser>Wsu_Storepartitions_Block_Rewrite_AdminCatalogCategoryWidgetChooser</catalog_category_widget_chooser>
+					
+
+					
+					
 					<store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher</store_switcher>
+					
 					<tag_store_switcher>Wsu_Storepartitions_Block_Rewrite_AdminTagStoreSwitcher</tag_store_switcher>
+					
 					<sales_order_create_store_select>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderCreateStoreSelect</sales_order_create_store_select>
 					<sales_order_grid>Wsu_Storepartitions_Block_Rewrite_AdminSalesOrderGrid</sales_order_grid>
+					
 					<customer_edit>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEdit</customer_edit>
 					<customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerGrid</customer_grid>
 					<customer_online_grid>Wsu_Storepartitions_Block_Rewrite_AdminCustomerOnlineGrid</customer_online_grid>
 					<customer_edit_tab_view_orders>Wsu_Storepartitions_Block_Rewrite_AdminCustomerEditTabViewOrders</customer_edit_tab_view_orders>
+					
 					<cms_page_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageGrid</cms_page_grid>
 					<cms_page_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsPageEdit</cms_page_edit>
+					
 					<cms_block_grid>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockGrid</cms_block_grid>
 					<cms_block_edit_form>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEditForm</cms_block_edit_form>
 					<cms_block_edit>Wsu_Storepartitions_Block_Rewrite_AdminCmsBlockEdit</cms_block_edit>
+					
 					<poll_grid>Wsu_Storepartitions_Block_Rewrite_AdminPollGrid</poll_grid>
 					<poll_edit>Wsu_Storepartitions_Block_Rewrite_AdminPollEdit</poll_edit>
+					
 					<report_product_viewed_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportProductViewedGrid</report_product_viewed_grid>
 					<report_review_customer_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportReviewCustomerGrid</report_review_customer_grid>
 					<report_sales_bestsellers_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesBestsellersGrid</report_sales_bestsellers_grid>
@@ -254,7 +288,15 @@
 					<report_sales_tax_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportSalesTaxGrid</report_sales_tax_grid>
 					<report_shopcart_product_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartProductGrid</report_shopcart_product_grid>
 					<report_shopcart_abandoned_grid>Wsu_Storepartitions_Block_Rewrite_AdminReportShopcartAbandonedGrid</report_shopcart_abandoned_grid>
+					
 					<newsletter_subscriber_grid>Wsu_Storepartitions_Block_Rewrite_AdminNewsletterSubscriberGrid</newsletter_subscriber_grid>
+					
+                    <promo_quote_edit>Wsu_Storepartitions_Block_Rewrite_AdminPromoQuoteEdit</promo_quote_edit>
+                    <promo_quote_edit_tab_labels>Wsu_Storepartitions_Block_Rewrite_AdminhtmlPromoQuoteEditTabLabels</promo_quote_edit_tab_labels>
+                    <promo_catalog_edit>Wsu_Storepartitions_Block_Rewrite_AdminPromoCatalogEdit</promo_catalog_edit>
+                    <promo_quote_grid>Wsu_Storepartitions_Block_Rewrite_AdminPromoQuoteGrid</promo_quote_grid>
+                    <promo_catalog_grid>Wsu_Storepartitions_Block_Rewrite_AdminPromoCatalogGrid</promo_catalog_grid>
+					
 				</rewrite>
 			</adminhtml>
 		</blocks>
@@ -363,6 +405,22 @@
 					</storepartitions>
 				</observers>
 			</catalog_product_edit_action>
+            <controller_action_layout_render_before_adminhtml_catalog_product_edit>
+                <observers>
+                    <storepartitions>
+                        <class>storepartitions/observer</class>
+                        <method>onControllerActionLayoutRenderBeforeAdminhtmlCatalogProductEdit</method>
+                    </storepartitions>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_edit>
+            <adminhtml_catalog_category_tree_can_add_sub_category>
+                <observers>
+                    <storepartitions>
+                        <class>storepartitions/observer</class>
+                        <method>onCatalogCategoryTreeCanAddSubCategory</method>
+                    </storepartitions>
+                </observers>
+            </adminhtml_catalog_category_tree_can_add_sub_category>
 			<admin_roles_save_before>
 				<observers>
 					<storepartitions>
@@ -411,6 +469,39 @@
 					</storepartitions>
 				</observers>
 			</review_delete_before>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <storepartitions>                        
+                        <class>storepartitions/observer</class>
+                        <method>removeAddNewProductButton</method>
+                    </storepartitions>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+
+            <catalog_product_new_action>
+                <observers>
+                    <storepartitions>                        
+                        <class>storepartitions/observer</class>
+                        <method>denyToCreateProduct</method>
+                    </storepartitions>
+                </observers>
+            </catalog_product_new_action>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <storepartitions>
+                        <class>storepartitions/observer</class>
+                        <method>coreBlockAbstractToHtmlBefore</method>
+                    </storepartitions>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <storepartitions>
+                        <class>storepartitions/observer</class>
+                        <method>coreBlockAbstractToHtmlAfter</method>
+                    </storepartitions>
+                </observers>
+            </core_block_abstract_to_html_after>
 			<core_locale_set_locale>
 				<observers>
 					<storepartitions>
@@ -437,6 +528,11 @@
 					<file>storepartitions_su.html</file>
 					<type>html</type>
 				</admin_su_template>
+                <admin_sucategory_template translate="label" module="storepartitions">
+                    <label>Approve new category</label>
+                    <file>storepartitions_sucategory.html</file>
+                    <type>html</type>
+                </admin_sucategory_template>
 			</email>
 		</template>
 	</global>
@@ -453,6 +549,11 @@
 				<email/>
 				<template>admin_su_template</template>
 			</su>
+            <sucategories>
+                <enable>0</enable>
+                <email></email>
+                <template>admin_sucategory_template</template>
+            </sucategories>
 		</storepartitions>
 	</default>
 </config>

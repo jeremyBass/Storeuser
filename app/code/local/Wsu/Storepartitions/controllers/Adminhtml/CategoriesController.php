@@ -1,8 +1,4 @@
 <?php
-/*
- * @refactor
- * move to common controller
- */
 class Wsu_Storepartitions_Adminhtml_CategoriesController extends Mage_Adminhtml_Controller_Action {
     /*
      * @refactor

@@ -8,7 +8,7 @@ class Wsu_Storepartitions_Block_Rewrite_BundleAdminhtmlCatalogProductEditTabAttr
                 $this->getElement()->setReadonly(true);
                 $afterHtml = $this->getElement()->getAfterElementHtml();
                 if (false !== strpos($afterHtml, 'type="checkbox"')) {
-                    $afterHtml = str_replace('type="checkbox"', 'type="checkbox" disabled="disabled"', $afterHtml);
+                    $afterHtml = str_replace('type="checkbox"', 'type="checkbox" disabled ', $afterHtml);
                     $this->getElement()->setAfterElementHtml($afterHtml);
                 }
             }

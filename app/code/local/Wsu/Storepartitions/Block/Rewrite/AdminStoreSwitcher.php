@@ -104,10 +104,8 @@ class Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher extends Mage_Adminhtm
     }
     protected function _toHtml() {
         if (strpos(Mage::app()->getRequest()->getControllerName(), 'report') !== false) {
-            // ... and 1.3 (other) versions
             return $this->_toHtmlReports();
         }
-        // the next code will work for all store selectors except reports
         $sHtml = parent::_toHtml();
         $role  = Mage::getSingleton('storepartitions/role');
         if ($role->isPermissionsEnabled()) {
@@ -124,7 +122,6 @@ class Wsu_Storepartitions_Block_Rewrite_AdminStoreSwitcher extends Mage_Adminhtm
             // removing <option value="">All Store Views</option> option if have limited access
             $sHtml = preg_replace('@<option value="">(.*)</option>@', '', $sHtml);
         }
-        // enhanced switcher is used on categories page
         if (preg_match('@varienStoreSwitcher@', $sHtml)) {
             $sHtml .= '
             <script type="text/javascript">
