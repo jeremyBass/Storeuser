@@ -64,7 +64,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_recordCollection;
     }
     public function isPermissionsEnabled() {
-        if (is_null($this->_permissionsEnabled) {
+        if (is_null($this->_permissionsEnabled)) {
             $this->_permissionsEnabled = (bool) $this->_getRecordCollection()->getSize();
         }
         return $this->_permissionsEnabled;
