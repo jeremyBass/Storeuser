@@ -26,7 +26,7 @@
 	<admin>
 		<routers>
 			<storepartitions>
-				<use>storepartitions</use>
+				<use>admin</use>
 				<args>
 					<module>Wsu_Storepartitions</module>
 					<frontName>storepartitions</frontName>
