@@ -6,6 +6,12 @@ $installer = $this;
 $installer->startSetup();
 
 $table_advancedrole = $installer->getTable('wsu_storepartitions_advancedrole');
+$table_approvedproducts = $installer->getTable('wsu_storepartitions_approvedproducts');
+$table_approvedcategories = $installer->getTable('wsu_storepartitions_approvedcategories');
+$table_editor_attribute = $installer->getTable('wsu_storepartitions_editor_attribute');
+$table_editor_tab = $installer->getTable('wsu_storepartitions_editor_tab');
+$table_editor_type = $installer->getTable('wsu_storepartitions_editor_type');
+
 $installer->run("
 	DROP TABLE IF EXISTS `{$table_advancedrole}`;
 	CREATE TABLE `{$table_advancedrole}` (
@@ -30,17 +36,8 @@ $installer->run("
 		KEY `store_id` (`store_id`)
 	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT='Role definitions';
 ");
-//ok fix this up some ok? yeah ok, well it anit right is it? no.. but.. but what.. blaaaa
-/*
-ALTER TABLE `{$this->getTable('wsu_storepartitions_advancedrole')}` ADD INDEX ( `website_id` ) ;
-ALTER TABLE `{$this->getTable('wsu_storepartitions_advancedrole')}` DROP INDEX `role_id` ;
-ALTER TABLE `{$this->getTable('wsu_storepartitions_advancedrole')}` DROP INDEX `store_id` ;
-
-$installer->run(" ALTER TABLE `{$this->getTable('wsu_storepartitions_advancedrole')}` ADD INDEX ( `store_id` ) ; ");
-*/
 
 
-$table_approvedproducts = $installer->getTable('wsu_storepartitions_approvedproducts');
 $installer->run("
 	DROP TABLE IF EXISTS `{$table_approvedproducts}`;
 	CREATE TABLE `{$table_approvedproducts}` (
@@ -52,7 +49,7 @@ $installer->run("
 	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT='Product Approval Status';
 ");
 
-$table_approvedcategories = $installer->getTable('wsu_storepartitions_approvedcategories');
+
 $installer->run("
 	DROP TABLE IF EXISTS `{$table_approvedcategories}`;
 	CREATE TABLE `{$table_approvedcategories}` (
@@ -64,8 +61,6 @@ $installer->run("
 	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT='Category Approval Status';
 ");
 
-
-$table_editor_attribute = $installer->getTable('wsu_storepartitions_editor_attribute');
 $installer->run($sql = "
 DROP TABLE IF EXISTS `{$table_editor_attribute}`;
 CREATE TABLE IF NOT EXISTS {$table_editor_attribute} (
@@ -80,7 +75,6 @@ CREATE TABLE IF NOT EXISTS {$table_editor_attribute} (
     
 ");
 
-$table_editor_tab = $installer->getTable('wsu_storepartitions_editor_tab');
 $installer->run($sql = "
 DROP TABLE IF EXISTS `{$table_editor_tab}`;
 CREATE TABLE IF NOT EXISTS {$table_editor_tab} (
@@ -94,7 +88,6 @@ CREATE TABLE IF NOT EXISTS {$table_editor_tab} (
     
 ");
 
-$table_editor_type = $installer->getTable('wsu_storepartitions_editor_type');
 $installer->run($sql = "
 DROP TABLE IF EXISTS `{$table_editor_type}`;
 CREATE TABLE IF NOT EXISTS {$table_editor_type} (
@@ -109,7 +102,6 @@ CREATE TABLE IF NOT EXISTS {$table_editor_type} (
 
 $catalogInstaller = Mage::getResourceModel('catalog/setup', 'catalog_setup');
 $catalogInstaller->addAttribute('catalog_product', 'created_by', array( 'type' => 'int', 'visible'  => false, 'required' => false ));
-
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'is_visible', '1'); 
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'source_model', 'storepartitions/source_admins'); 
 $catalogInstaller->updateAttribute('catalog_product', 'created_by', 'frontend_label', 'Product owner'); 

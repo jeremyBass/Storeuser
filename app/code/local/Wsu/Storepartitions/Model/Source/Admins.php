@@ -16,12 +16,9 @@ class Wsu_Storepartitions_Model_Source_Admins extends Mage_Eav_Model_Entity_Attr
         return $this->_data;
     }
     public function toOptionArray() {
-        $array = array(
-       //     array('value' => 0, 'label'=>Mage::helper('storepartitions')->__('')),
-        );
+        $array = array();
         $levels = $this->_getAllOptions();
         foreach($levels as $key=>$value) {
-            //$array[] = array('value' => $key, 'label'=>Mage::helper('storepartitions')->__(ucfirst($value)));
             $array[] = array('value' => $key, 'label'=>Mage::helper('storepartitions')->__($value));
         }
         return $array;

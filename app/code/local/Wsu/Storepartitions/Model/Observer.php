@@ -49,8 +49,12 @@ class Wsu_Storepartitions_Model_Observer {
             $this->deleteAdvancedRole($roleId);
             if ('store' == $scope) {
                 $this->_saveRoleStoreRestriction($roleId);
+                $this->_saveRoleProductCreatorPermissions($roleId);
+                $this->_saveRoleProductTabsPermissions($roleId);
             } else if ('website' == $scope) {
                 $this->_saveRoleWebsiteRestriction($roleId);
+                $this->_saveRoleProductCreatorPermissions($roleId);
+                $this->_saveRoleProductTabsPermissions($roleId);
             } else if ('disabled' == $scope) {
                 //                Mage::getSingleton('adminhtml/session')->addSuccess(
                 //                    $this->_helper->__('Advanced permissions were disabled for this role')
@@ -59,6 +63,8 @@ class Wsu_Storepartitions_Model_Observer {
                 Mage::getSingleton('adminhtml/session')->addError($this->_helper->__('Invalid Advanced Permissions scope type received'));
             }
         }
+        $this->_saveAttributeArray('is_allow_ids',$roleId, 1);
+        $this->_saveAttributeArray('is_disable_ids',$roleId, 0);
     }
     protected function _saveAttributeArray($name,$roleId, $allow){
         if(Mage::app()->getRequest()->getPost($name) != Mage::app()->getRequest()->getPost($name.'_old')){
@@ -258,7 +264,7 @@ class Wsu_Storepartitions_Model_Observer {
         }
         $product = $observer->getProduct();
         if (($role->canEditOwnProductsOnly() && !$role->isOwnProduct($product)) || !$role->isAllowedToEditProduct($product)) {
-            Mage::getSingleton('adminhtml/session')->addError($this->_helper->__('Sorry, you have no permissions to edit this product. For more details please contact site administrator.'));
+            Mage::getSingleton('adminhtml/session')->addError($this->_helper->__('Sorry, you have no permissions to edit this product.'));
             $controller = Mage::app()->getFrontController();
             $controller->getResponse()->setRedirect(Mage::getModel('adminhtml/url')->getUrl('*/*/', array(
                 'store' => $controller->getRequest()->getParam('store', 0)
@@ -517,6 +523,19 @@ class Wsu_Storepartitions_Model_Observer {
             $collection->addStoreFilter($this->_getCurrentRole()->getAllowedStoreviewIds());
         }
     }
+	
+    protected function _filterByOwner($itemName, $collection){
+        if (!$this->_getCurrentRole()->isPermissionsEnabled()){
+            return;
+        }
+        $permissionOrder = Mage::getSingleton('storepartitions/permissions_order');
+        if(!$permissionOrder->canManageOrdersOwnProductsOnly()){
+            return ;
+        }
+
+        $collection->addAttributeToFilter('entity_id', array('in' => $permissionOrder->getIdsForOwnerByItemsName($itemName)));
+    }
+	
     public function onEavCollectionAbstractLoadBefore($observer) {
 		$routeName = Mage::app()->getFrontController()->getRequest()->getRouteName();
         if (false === strpos($routeName, 'adminhtml') && false === strpos($routeName, 'bundle')) {
@@ -634,7 +653,6 @@ class Wsu_Storepartitions_Model_Observer {
                 return;
             }
             if (is_array($model->getData('store_id')) && in_array(0, $model->getData('store_id'))) {
-                // allow, if admin store (all store views) selected
                 return;
             }
             if (is_array($model->getData('store_id')) && array_intersect($model->getData('store_id'), $this->_getCurrentRole()->getAllowedStoreviewIds())) {
@@ -710,23 +728,42 @@ class Wsu_Storepartitions_Model_Observer {
 		Mage::getSingleton('catalog/product_action')->updateAttributes(array($productId), $data, $storeId);
     }
 	
-    public function removeAddNewProductButton(Varien_Event_Observer $observer){
+    public function removeAddNewProductButton(Varien_Event_Observer $observer) {
         $block = $observer->getEvent()->getBlock();
-        if ($block instanceof Mage_Adminhtml_Block_Catalog_Product){
-            if (!$this->_getCurrentRole()->isPermissionsEnabled()){
-                return;
-            }
-
-            $getCurrentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getRoleId();
-            $canCreateProducts = Mage::getModel('storepartitions/advancedrole')->canCreateProducts($getCurrentUserRole);
-            if(!$canCreateProducts){
+        if ($block instanceof Mage_Adminhtml_Block_Catalog_Product) {
+            if(!$this->_isCanCreateProduct()) {
                 $block->removeButton('add_new');
             }
-
-            return;
+        }
+        if ($block instanceof Mage_Adminhtml_Block_Catalog_Product_Edit) {
+            if(!$this->_isCanCreateProduct() || !$this->_isCanCreateProductType($block->getProduct())) {
+                $block->unsetChild('duplicate_button');
+            }
         }
     }
+	protected function _isCanCreateProductType($product) {
+        if (!$this->_getCurrentRole()->isPermissionsEnabled()){
+            return true;
+        }
 
+        $roleId = Mage::getSingleton('admin/session')->getUser()->getRole()->getRoleId();
+        $aitProductTypes = Mage::getModel('storepartitions/editor_type')->getRestrictedTypes($roleId);
+        $productType = $product->getTypeID();
+
+        return in_array($productType, $aitProductTypes);
+    }
+
+    protected function _isCanCreateProduct(){
+        if (!$this->_getCurrentRole()->isPermissionsEnabled()){
+            return true;
+        }
+        $getCurrentUserRole = Mage::getSingleton('admin/session')->getUser()->getRole()->getRoleId();
+        $canCreateProducts = Mage::getModel('storepartitions/advancedrole')->canCreateProducts($getCurrentUserRole);
+        if(!$canCreateProducts){
+            return false;
+        }
+        return true;
+    }
     public function denyToCreateProduct(Varien_Event_Observer $observer){
         $session = Mage::getSingleton('admin/session');
         $getCurrentUserRole = $session->getUser()->getRole()->getRoleId();

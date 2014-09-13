@@ -1,5 +1,5 @@
 <?php
-class Wsu_Storepartitions_Mysql4_Editor_Attribute_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract{
+class Wsu_Storepartitions_Model_Mysql4_Editor_Attribute_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract {
     protected $_post_role_id = 0;
     protected $_post_allow = 0;
 
@@ -11,7 +11,7 @@ class Wsu_Storepartitions_Mysql4_Editor_Attribute_Collection extends Mage_Core_M
         $this->getSelect()->reset(Zend_Db_Select::WHERE);
         $this->addFieldToFilter('role_id', $roleId);
 
-        if($if !== null){
+        if(!is_null($if)){
             $this->addFieldToFilter('is_allow', $if);
         }
         return $this->load();

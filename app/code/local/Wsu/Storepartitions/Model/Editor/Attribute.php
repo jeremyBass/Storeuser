@@ -20,7 +20,7 @@ class Wsu_Storepartitions_Model_Editor_Attribute extends Mage_Core_Model_Abstrac
         return $array;
     }
     public function getAttributePermissionByRole($role){
-        if($this->_arrayPermissions === null){
+        if(is_null($this->_arrayPermissions)){
             $collection = $this->getCollection();
             $this->_arrayPermissions = array();
             foreach($collection->getAttributeByRole($role) as $attr){

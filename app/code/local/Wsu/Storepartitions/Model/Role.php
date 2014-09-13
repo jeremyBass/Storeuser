@@ -232,8 +232,7 @@ class Wsu_Storepartitions_Model_Role {
         }
         return $this->_canEditWebSites;
     }	
-		
-    // product permissions
+
     public function canCreateProducts(){
         if (is_null($this->_canCreateProducts)){
             $this->_canCreateProducts = (bool)$this->_getRecordCollection()
