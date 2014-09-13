@@ -4,8 +4,8 @@
 $installer = $this;
 
 $installer->startSetup();
-$table_advancedrole = $installer->getTable('wsu_storepartitions_advancedrole');
 
+$table_advancedrole = $installer->getTable('wsu_storepartitions_advancedrole');
 $installer->run("
 	DROP TABLE IF EXISTS `{$table_advancedrole}`;
 	CREATE TABLE `{$table_advancedrole}` (
@@ -106,18 +106,6 @@ CREATE TABLE IF NOT EXISTS {$table_editor_type} (
   KEY `role_id` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci COMMENT='editor type';
 ");
-
-$RoleCollection = Mage::getModel('storepartitions/advancedrole')->getCollection();
-foreach ($RoleCollection as $Role) {
-    if ($Role->getStoreId()){
-    	$StoreId = Mage::getModel('core/store')->load($Role->getStoreId())->getGroupId();
-
-    	$Role->setData('storeview_ids', $Role->getStoreId());
-    	$Role->setData('store_id', $StoreId);
-    	
-    	$Role->save();
-    }
-}
 
 $catalogInstaller = Mage::getResourceModel('catalog/setup', 'catalog_setup');
 $catalogInstaller->addAttribute('catalog_product', 'created_by', array( 'type' => 'int', 'visible'  => false, 'required' => false ));

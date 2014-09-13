@@ -85,6 +85,16 @@
 				</admin>
 			</resources>
 		</acl>
+        <events>
+            <model_load_after>
+                <observers>
+                    <storepartitions>
+                        <class>storepartitions/observer</class>
+                        <method>onModelLoadAfter</method>
+                    </storepartitions>
+                </observers>
+            </model_load_after>
+        </events>
 	</adminhtml>
 	<global>
 		<cms>

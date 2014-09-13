@@ -15,25 +15,34 @@ class Wsu_Storepartitions_Model_Role {
     const SCOPE_WEBSITE = 'website';
     const SCOPE_STORE = 'store';
     private $_helper = null;
+	
     private $_recordCollection = null;
+	
     private $_permissionsEnabled = null;
     private $_scope = null;
+	
     private $_canEditGlobalAttributes = null;
     private $_canEditOwnProductsOnly = null;
+	private $_canCreateProducts = null;
+	
     private $_canAddStoreViews = null;
-	private $_canEditStoreViews = null;
-	private $_canAddStoreGroups = null;
-	private $_canEditStoreGroups = null;
 	private $_canAddWebSites = null;
+	private $_canAddStoreGroups = null;
+	
+	private $_canEditStoreGroups = null;
+	private $_canEditStoreViews = null;
 	private $_canEditWebSites = null;
+	
     private $_websiteIds = null;
     private $_storeIds = null;
     private $_storeviewIds = null;
     private $_categoryIds = null;
+	
     private $_allowedWebsiteIds = null;
     private $_allowedStoreIds = null;
     private $_allowedStoreviewIds = null;
     private $_allowedCategoryIds = null;
+	
     public function __construct() {
         $this->_helper = Mage::helper('storepartitions');
     }
@@ -49,7 +58,8 @@ class Wsu_Storepartitions_Model_Role {
     }
     private function _getRecordCollection() {
         if (null == $this->_recordCollection) {
-            $this->_recordCollection = Mage::getModel('storepartitions/advancedrole')->getCollection()->loadByRoleId($this->_getCurrentRoleId());
+            $this->_recordCollection = Mage::getModel('storepartitions/advancedrole')
+							->getCollection()->loadByRoleId($this->_getCurrentRoleId());
         }
         return $this->_recordCollection;
     }
