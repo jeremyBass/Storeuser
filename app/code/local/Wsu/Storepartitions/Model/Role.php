@@ -57,21 +57,21 @@ class Wsu_Storepartitions_Model_Role {
         return 0;
     }
     private function _getRecordCollection() {
-        if (null == $this->_recordCollection) {
+        if (is_null($this->_recordCollection)) {
             $this->_recordCollection = Mage::getModel('storepartitions/advancedrole')
 							->getCollection()->loadByRoleId($this->_getCurrentRoleId());
         }
         return $this->_recordCollection;
     }
     public function isPermissionsEnabled() {
-        if (null == $this->_permissionsEnabled) {
+        if (is_null($this->_permissionsEnabled) {
             $this->_permissionsEnabled = (bool) $this->_getRecordCollection()->getSize();
         }
         return $this->_permissionsEnabled;
     }
     // scope
     public function getScope() {
-        if (null == $this->_scope) {
+        if (is_null($this->_scope)) {
             $this->_scope = $this->getStoreviewIds() ? self::SCOPE_STORE : self::SCOPE_WEBSITE;
         }
         return $this->_scope;
@@ -84,7 +84,7 @@ class Wsu_Storepartitions_Model_Role {
     }
     // stored values
     public function getWebsiteIds() {
-        if (null == $this->_websiteIds) {
+        if (is_null($this->_websiteIds)) {
             $this->_websiteIds = array();
             foreach ($this->_getRecordCollection() as $record) {
                 if ($record->getWebsiteId()) {
@@ -95,7 +95,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_websiteIds;
     }
     public function getStoreIds() {
-        if (null == $this->_storeIds) {
+        if (is_null($this->_storeIds)) {
             $this->_storeIds = array();
             foreach ($this->_getRecordCollection() as $record) {
                 $this->_storeIds[] = $record->getStoreId();
@@ -104,7 +104,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_storeIds;
     }
     public function getStoreviewIds() {
-        if (null == $this->_storeviewIds) {
+        if (is_null($this->_storeviewIds)) {
             $this->_storeviewIds = array();
             foreach ($this->_getRecordCollection() as $record) {
                 $this->_storeviewIds = array_merge($this->_storeviewIds, $record->getStoreviewIdsArray());
@@ -113,7 +113,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_storeviewIds;
     }
     public function getCategoryIds() {
-        if (null == $this->_categoryIds) {
+        if (is_null($this->_categoryIds)) {
             $this->_categoryIds = array();
             foreach ($this->_getRecordCollection() as $record) {
                 $this->_categoryIds = array_unique(array_merge($this->_categoryIds, $record->getCategoryIdsArray()));
@@ -123,7 +123,7 @@ class Wsu_Storepartitions_Model_Role {
     }
     // calculated allowed values
     public function getAllowedWebsiteIds() {
-        if (null == $this->_allowedWebsiteIds) {
+        if (is_null($this->_allowedWebsiteIds)) {
             $this->_allowedWebsiteIds = array();
             if ($this->isScopeStore()) {
                 $storeCollection = Mage::getModel('core/store_group')->getCollection()->addFieldToFilter('group_id', array(
@@ -141,7 +141,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_allowedWebsiteIds;
     }
     public function getAllowedStoreIds() {
-        if (null == $this->_allowedStoreIds) {
+        if (is_null($this->_allowedStoreIds)) {
             if ($this->isScopeStore()) {
                 $this->_allowedStoreIds = $this->getStoreIds();
             }
@@ -156,7 +156,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_allowedStoreIds;
     }
     public function getAllowedStoreviewIds() {
-        if (null == $this->_allowedStoreviewIds) {
+        if (is_null($this->_allowedStoreviewIds)) {
             if ($this->isScopeStore()) {
                 $this->_allowedStoreviewIds = $this->getStoreviewIds();
             }
@@ -171,7 +171,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_allowedStoreviewIds;
     }
     public function getAllowedCategoryIds() {
-        if (null === $this->_allowedCategoryIds) {
+        if (is_null($this->_allowedCategoryIds)) {
             $this->_allowedCategoryIds = array();
             if ($this->isScopeStore()) {
                 $this->_allowedCategoryIds = $this->getCategoryIds();
@@ -189,7 +189,7 @@ class Wsu_Storepartitions_Model_Role {
         return ($this->isScopeStore() && $this->_helper->isAllowedDeletePerStoreview()) || ($this->isScopeWebsite() && $this->_helper->isAllowedDeletePerWebsite());
     }
     public function canEditGlobalAttributes() {
-        if (null == $this->_canEditGlobalAttributes) {
+        if (is_null($this->_canEditGlobalAttributes)) {
             $this->_canEditGlobalAttributes = (bool) $this->_getRecordCollection()->getFirstItem()->getCanEditGlobalAttr();
         }
         return $this->_canEditGlobalAttributes;
@@ -197,37 +197,37 @@ class Wsu_Storepartitions_Model_Role {
 
 	
     public function canAddStoreViews() {
-        if (null == $this->_canAddStoreViews) {
+        if (is_null($this->_canAddStoreViews)) {
             $this->_canAddStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getCanAddStoreViews();
         }
         return $this->_canAddStoreViews;
     }
     public function canEditStoreViews() {
-        if (null == $this->_canEditStoreViews) {
+        if (is_null($this->_canEditStoreViews)) {
             $this->_canEditStoreViews = (bool) $this->_getRecordCollection()->getFirstItem()->getEditStoreViews();
         }
         return $this->_canEditStoreViews;
     }
     public function canAddStoreGroups() {
-        if (null == $this->_canAddStoreGroups) {
+        if (is_null($this->_canAddStoreGroups)) {
             $this->_canAddStoreGroups = (bool) $this->_getRecordCollection()->getFirstItem()->getAddStoreGroups();
         }
         return $this->_canAddStoreGroups;
     }
     public function canEditStoreGroups() {
-        if (null == $this->_canEditStoreGroups) {
+        if (is_null($this->_canEditStoreGroups)) {
             $this->_canEditStoreGroups = (bool) $this->_getRecordCollection()->getFirstItem()->getEditStoreGroups();
         }
         return $this->_canEditStoreGroups;
     }	
     public function canAddWebSites() {
-        if (null == $this->_canAddWebSites) {
+        if (is_null($this->_canAddWebSites)) {
             $this->_canAddWebSites = (bool) $this->_getRecordCollection()->getFirstItem()->getAddWebSites();
         }
         return $this->_canAddWebSites;
     }
     public function canEditWebSites() {
-        if (null == $this->_canEditWebSites) {
+        if (is_null($this->_canEditWebSites)) {
             $this->_canEditWebSites = (bool) $this->_getRecordCollection()->getFirstItem()->getEditWebSites();
         }
         return $this->_canEditWebSites;
@@ -243,7 +243,7 @@ class Wsu_Storepartitions_Model_Role {
         return $this->_canCreateProducts;
     }
     public function canEditOwnProductsOnly() {
-        if (null == $this->_canEditOwnProductsOnly) {
+        if (is_null($this->_canEditOwnProductsOnly)) {
             $this->_canEditOwnProductsOnly = (bool) $this->_getRecordCollection()->getFirstItem()->getCanEditOwnProductsOnly();
         }
         return $this->_canEditOwnProductsOnly;
