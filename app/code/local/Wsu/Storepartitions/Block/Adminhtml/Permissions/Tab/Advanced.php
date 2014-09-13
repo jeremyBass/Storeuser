@@ -20,6 +20,9 @@ class Wsu_Storepartitions_Block_Adminhtml_Permissions_Tab_Advanced extends Mage_
         $this->setChild('options', $this->getLayout()->createBlock('storepartitions/adminhtml_options'));
         return $this;
     }
+	
+	
+	
     public function getScope() {
         $RoleCollection = Mage::getModel('storepartitions/advancedrole')->getCollection()->loadByRoleId($this->getRequest()->getParam('rid'));
         if ($RoleCollection->getItems()) {
@@ -32,6 +35,7 @@ class Wsu_Storepartitions_Block_Adminhtml_Permissions_Tab_Advanced extends Mage_
         }
         return 'disabled';
     }
+	
     public function isReadonly() {
         return false;
     }
