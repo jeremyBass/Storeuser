@@ -154,12 +154,12 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 		foreach( $subCollections as $key=>$items ){
 			$filename = $baseDir.$key.'.csv';
 			$fileContent=array();
+			$fileContent[] = '"path","scope","scope_id","value"';
 			foreach( $items as $item ){
 				$fileContent[] = $this->_getRow($item);
 			}
-			$header = '"path","scope","scope_id","value"'.PHP_EOL;
 			$contents = implode(PHP_EOL, $fileContent);
-			$this->_writeFile($filename,$header.$contents);
+			$this->_writeFile($filename,$contents);
 		}
 		$zipBaseDir = Mage::getBaseDir('cache').'/zipped_export/';
 		if(!file_exists($zipBaseDir)){
