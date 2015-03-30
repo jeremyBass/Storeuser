@@ -32,10 +32,8 @@
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 
-class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminhtml_Block_System_Store_Store
-{
-    public function __construct()
-    {
+class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminhtml_Block_System_Store_Store {
+    public function __construct() {
         $this->_controller  = 'system_store';
         $this->_headerText  = Mage::helper('adminhtml')->__('Manage Stores');
         $this->setTemplate('system/store/container.phtml');
@@ -43,15 +41,17 @@ class Wsu_Storepartitions_Block_Adminhtml_System_Store_Store extends Mage_Adminh
     }
 
     protected function _prepareLayout() {
-
-
         /* Add website button */
         $this->_addButton('quickadd', array(
             'label'     => Mage::helper('storepartitions')->__('Quick Add'),
             'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/quickAdd') .'\')',
             'class'     => 'quickadd',
         ));
-
+        $this->_addButton('exportsettings', array(
+            'label'     => Mage::helper('storepartitions')->__('Export settings'),
+            'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/exportStoreSettings') .'\')',
+            'class'     => 'exportsettings',
+        ));
 		$role = Mage::getSingleton('storepartitions/role');
 		
 		if( $role->isPermissionsEnabled() ){
