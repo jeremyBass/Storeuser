@@ -152,12 +152,12 @@ class Wsu_Storepartitions_Adminhtml_System_StoreController extends Mage_Adminhtm
 			mkdir($baseDir,0777,true);	
 		}
 		foreach( $subCollections as $key=>$items ){
-
 			$filename = $baseDir.$key.'.csv';
+			$fileContent=array();
 			foreach( $items as $item ){
 				$fileContent[] = $this->_getRow($item);
 			}
-			$header = '"path","scope","scope_id","value"'."\r";
+			$header = '"path","scope","scope_id","value"'.PHP_EOL;
 			$contents = implode(PHP_EOL, $fileContent);
 			$this->_writeFile($filename,$header.$contents);
 		}
