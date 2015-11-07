@@ -23,13 +23,19 @@
  * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+$storeId    = (int)$this->getRequest()->getParam('store', 0);
+$require_cat = Mage::getStoreConfig('storepartitions/sucategories/require_cat', $storeId);
+$class = "";
+if($require_cat){
+	$class = "class=required-entry'";
+}
 ?>
 <div class="entry-edit">
     <div class="entry-edit-head">
         <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Product Categories') ?></h4>
     </div>
     <fieldset id="grop_fields">
-        <input type="hidden" name="category_ids" id="product_categories" class="required-entry" value="<?php echo $this->getIdsString() ?>">
+        <input type="hidden" name="category_ids" id="product_categories" <?=$class?> value="<?php echo $this->getIdsString() ?>">
         <div id="product-categories" class="tree"></div>
     </fieldset>
 </div>
