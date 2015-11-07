@@ -19,4 +19,9 @@
             <block type="adminhtml/template" name="adminhtml.permissions.editroles.attribute" template="storepartitions/product/editor/grid_js.phtml"/>
         </reference>
     </adminhtml_permissions_role_editrole>
+	    <adminhtml_catalog_product_categories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/catalog_product_edit_tab_categories" name="catalog.product.edit.tab.categories"  template="storepartitions/catalog/product/edit/categories.phtml"/>
+        </block>
+    </adminhtml_catalog_product_categories>
 </layout>
