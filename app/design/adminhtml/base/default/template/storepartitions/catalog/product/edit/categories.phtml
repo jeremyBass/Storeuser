@@ -27,7 +27,7 @@ $storeId    = (int)$this->getRequest()->getParam('store', 0);
 $require_cat = Mage::getStoreConfig('storepartitions/sucategories/require_cat', $storeId);
 $class = "";
 if($require_cat){
-	$class = "class=required-entry'";
+	$class = "class='required-entry'";
 }
 ?>
 <div class="entry-edit">
