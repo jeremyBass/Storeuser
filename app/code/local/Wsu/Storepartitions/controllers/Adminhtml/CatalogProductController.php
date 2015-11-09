@@ -34,10 +34,10 @@ class Wsu_Storepartitions_Adminhtml_CatalogProductController extends Mage_Adminh
 		if($require_cat){
 			$response = new Varien_Object();
 			$response->setError(false);
-		
+
 			try {
 				$productData = $this->getRequest()->getPost('product');
-		
+
 				if ($productData && !isset($productData['stock_data']['use_config_manage_stock'])) {
 					$productData['stock_data']['use_config_manage_stock'] = 0;
 				}
@@ -70,7 +70,7 @@ class Wsu_Storepartitions_Adminhtml_CatalogProductController extends Mage_Adminh
 					}
 				}
 				//<=== end my changes
-		
+
 				$dateFields = array();
 				$attributes = $product->getAttributes();
 				foreach ($attributes as $attrKey => $attribute) {
@@ -98,9 +98,7 @@ class Wsu_Storepartitions_Adminhtml_CatalogProductController extends Mage_Adminh
 				$response->setError(true);
 				$response->setMessage($this->getLayout()->getMessagesBlock()->getGroupedHtml());
 			}
-		
 			$this->getResponse()->setBody($response->toJson());
-
 		}else{
 			parent::validateAction();
 		}
