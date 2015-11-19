@@ -1,0 +1,9 @@
+ {
+	"globals":{
+		"repo":{
+			"name":"WSUMAGE-Storepartitions",
+			"owner":"jeremyBass"
+		},
+		"google_analytics":"UA-XXXXXXXX-XX"
+	}
+}
