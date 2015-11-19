@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 		var wrench = require('wrench'),
 			util = require('util');
 		//clear all of the site first thing and start fresh
-		fsx.removeSync('./site');
+		fsx.removeSync('../site');
 
 		//read the setting and load as an object
 		var sitemap_path = 'src/sitemap.json';
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
 		 */
 		function resolve_path(relative_path,tested){
 			tested = tested||false;
-			var _path = "src/" + relative_path;
+			var _path = "../src/" + relative_path;
 			if( true === tested ){
 				_path = "builder/" + folders.templates +""+ relative_path;
 			}
@@ -148,18 +148,18 @@ module.exports = function(grunt) {
 		 * set up folders and defaults
 		 */
 		function create_structure(){
-			wrench.mkdirSyncRecursive('site/'+folders.assests, 0777);
+			wrench.mkdirSyncRecursive('../site/'+folders.assests, 0777);
 			
 			//do defaults first
 			fsx.copy('builder/'+folders.templates+folders.assests, '../site/'+folders.assests, {"clobber" :true}, function (err) {
 				if (err) return grunt.log.writeln(err);
 
 				var items = []; // files, directories, symlinks, etc
-				fsx.walk('src/'+folders.assests)
+				fsx.walk('../src/'+folders.assests)
 				.on('readable', function () {
 					var item;
 					while ((item = this.read())) {
-						var _path = (item.path).split('src\\'+(folders.assests.split("/").join("\\"))).join("..\site\\"+folders.assests.split("/").join("\\"));
+						var _path = (item.path).split('\\src\\'+(folders.assests.split("/").join("\\"))).join("\\site\\"+folders.assests.split("/").join("\\"));
 						try {
 							if(fs.statSync(_path).isFile()){
 								fsx.removeSync(_path);
@@ -188,7 +188,7 @@ module.exports = function(grunt) {
 		 */
 		function build_site_obj(callback){
 			var nav = {};
-			var pages = 'src/'+folders.pages;
+			var pages = '../src/'+folders.pages;
 			try {
 				if( !fs.statSync(pages).isDirectory() ){
 					pages = 'builder/'+folders.templates+folders.pages;
@@ -262,7 +262,7 @@ module.exports = function(grunt) {
 					if(typeof sitemap.pages[page_key].nav_link !== "undefined" ){
 						tmpobj[linkTitle]=sitemap.pages[page_key].nav_link;
 					}else{
-						tmpobj[linkTitle]=root+'/'+sitemap.pages[page_key].nav_key+".html";
+						tmpobj[linkTitle]= root+'/'+sitemap.pages[page_key].nav_key+".html";
 					}
 					if(typeof sitemap.pages[page_key].child_nav !== "undefined"){
 						var r = tmpobj[linkTitle];
