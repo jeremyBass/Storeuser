@@ -1,6 +1,6 @@
 {# 
 {
-	"index":{
+	"settings":{
 		"name":"settings",
 		"nav_link":"site/",
 		"root":"./site/",
