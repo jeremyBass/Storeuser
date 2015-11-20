@@ -1,3 +1,4 @@
 [submodule "docu"]
 	path = docu
 	url = https://github.com/jeremyBass/docu-build.git
+	branch = master
