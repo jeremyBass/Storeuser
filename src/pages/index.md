@@ -12,9 +12,6 @@
 	}
 }
 #}
-<!--
-
-} -->
 
 <h1>Store Partitions</h1>
 <h2 id="repo_github_header">Repo : <a href="https://github.com/{{ globals.repo.owner }}/{{ globals.repo.name }}">View On GitHub</a></h2>
