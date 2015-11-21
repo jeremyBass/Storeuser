@@ -1,7 +1,7 @@
 {# 
 {
 	"name":"settings",
-	"nav_link":"site/",
+	"nav_link":"",
 	"root":"./site/",
 	"folder_root":"../site/",
 	"title":"Settings",
