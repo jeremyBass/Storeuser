@@ -10,7 +10,7 @@
 	},
 	"child_nav":{
 		"#storepartitions_basicsettings":"Basic",
-		"#storepartitions_storesettings":"Site",
+		"#storepartitions_storesettings:"Site",
 		"#storepartitions_general":"Advanced Permissions",
 		"#storepartitions_su":"Product Approve",
 		"#storepartitions_sucategories":"Category Approve"
