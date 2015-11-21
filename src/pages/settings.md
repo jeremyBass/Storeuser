@@ -5,15 +5,16 @@
 	"root":"./site/",
 	"folder_root":"../site/",
 	"title":"Settings",
+	"nav_title":"Settings",
 	"vars":{
 		"showstuff":true
 	},
 	"child_nav":{
-		"Basic":"#storepartitions_basicsettings-head",
-		"Site":"#storepartitions_storesettings-head",
-		"Advanced Permissions":"#storepartitions_general-head",
-		"Product Approve":"#storepartitions_su-head",
-		"Category Approve":"#storepartitions_sucategories-head"
+		"#storepartitions_basicsettings-head":"Basic",
+		"#storepartitions_storesettings-head":"Site",
+		"#storepartitions_general-head":"Advanced Permissions",
+		"#storepartitions_su-head":"Product Approve",
+		"#storepartitions_sucategories-head":"Category Approve"
 	}
 }
 #}
