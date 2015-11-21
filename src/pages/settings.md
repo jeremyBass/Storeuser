@@ -9,11 +9,11 @@
 		"showstuff":true
 	},
 	"child_nav":{
-		"#storepartitions_basicsettings-head":"Basic",
-		"#storepartitions_storesettings-head":"Site",
-		"#storepartitions_general-head":"Advanced Permissions",
-		"#storepartitions_su-head":"Product Approve",
-		"#storepartitions_sucategories-head":"Category Approve"
+		"#storepartitions_basicsettings":"Basic",
+		"#storepartitions_storesettings:"Site",
+		"#storepartitions_general":"Advanced Permissions",
+		"#storepartitions_su":"Product Approve",
+		"#storepartitions_sucategories":"Category Approve"
 	}
 }
 #}
