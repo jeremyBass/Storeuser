@@ -20,7 +20,7 @@
 {% markdown %}
 ## basic settings
 
-![Settings Area](/site/assests/img/settings-area.png)
+![Settings Area](site/assests/img/settings-area.png)
 
 {% endmarkdown %}
 <div id="anchor-content">
