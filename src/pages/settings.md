@@ -18,6 +18,9 @@
 }
 #}
 {% markdown %}
+
+# Store Partitions
+
 ## basic settings
 
 ![Settings Area](site/assests/img/settings-area.png)
