@@ -6,7 +6,7 @@ class Wsu_Storepartitions_Block_Rewrite_AdminhtmlCatalogFormRendererFieldsetElem
         if(!($this->getElement() && $this->getElement()->getEntityAttribute()) || !$role->isPermissionsEnabled()){
             return $result;
         }
-        if (in_array($this->getElement()->getEntityAttribute()->getAttributeCode(), $this->_disableAlways)){
+        if (is_array($this->_disableAlways) && in_array($this->getElement()->getEntityAttribute()->getAttributeCode(), $this->_disableAlways)){
             $this->_disableElement();
             return $result;
         }
